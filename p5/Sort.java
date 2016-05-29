@@ -200,6 +200,7 @@ public class Sort {
     public void RunTimes() {
         List<Integer> tempLista;
         System.out.println("-- Bubble sort --");
+        System.out.println("Datos basados en 10 ejecuciones");
         System.out.println("                             Tiempo             Comparaciones     Swaps");
         
         tInicio = System.nanoTime();
@@ -253,6 +254,7 @@ public class Sort {
         System.out.println();
         
         System.out.println("-- Selection sort --");
+        System.out.println("Datos basados en 10 ejecuciones");
         System.out.println("                             Tiempo             Comparaciones     Swaps");
         
         tInicio = System.nanoTime();
@@ -306,6 +308,7 @@ public class Sort {
         System.out.println();
         
         System.out.println("-- Insertion sort --");
+        System.out.println("Datos basados en 10 ejecuciones");
         System.out.println("                             Tiempo             Comparaciones     Swaps");
         
         tInicio = System.nanoTime();
@@ -360,6 +363,7 @@ public class Sort {
         System.out.println();
         
         System.out.println("-- Quick sort --");
+        System.out.println("Datos basados en 10 ejecuciones");
         System.out.println("                             Tiempo             Comparaciones     Swaps");
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
@@ -412,6 +416,7 @@ public class Sort {
         }
         
         System.out.println("-- Merge sort --");
+        System.out.println("Datos basados en 10 ejecuciones");
         System.out.println("                             Tiempo             Comparaciones     Swaps");
         List<Integer> listaApoyo;
         tInicio = System.nanoTime();
@@ -468,6 +473,7 @@ public class Sort {
         int prinNum = listaAle.get(0);
         int notNum = 30000;
         System.out.println("-- Sequential search --");
+        System.out.println("Datos basados en 10000 ejecuciones");
         System.out.println("                             Tiempos");
         System.out.println("- datos aleatorios -");
         tInicio = System.nanoTime();
@@ -604,7 +610,9 @@ public class Sort {
         
         System.out.println();
         System.out.println("-- Binary search (Sólo para arrays ordenados o arrays con el mismo numero en todas sus posiciones) --");
-        System.out.println("                             Tiempos");
+        System.out.println("                             Tiempos --");
+        
+        System.out.println("Datos basados en 10000 ejecuciones");
         System.out.println("- datos ordenados o inversamente ordenados -");
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {

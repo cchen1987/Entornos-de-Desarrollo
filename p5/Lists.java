@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 
 /**
- *
  * @author chao
  */
 public class Lists {
@@ -36,22 +35,6 @@ public class Lists {
         for (int i = 0; i < 1000; i++) {
             listaEnl.add(rnd.nextInt(2000000));
         }
-        
-        // Medición tiempo medio para copiar un ArrayList
-        tInicio = System.currentTimeMillis();
-        for (int i = 0; i < 10000; i++) {
-            tempList = new ArrayList<>(lista);
-        }
-        tFin = System.currentTimeMillis();
-        tCopiaLista = (tFin - tInicio);
-        
-        // Medición tiempo medio para copiar un LinkedList
-        tInicio = System.nanoTime();
-        for (int i = 0; i < 10000; i++) {
-            tempListEnl = new LinkedList<>(listaEnl);
-        }
-        tFin = System.nanoTime();
-        tCopiaListaEnl = (tFin - tInicio);
     }
     
     public void insertar() {
@@ -211,7 +194,7 @@ public class Lists {
         // ArrayList
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempList = new LinkedList<>(lista);
+            tempList = new ArrayList<>(lista);
             tempList.removeIf(x -> x == finLista);
         }
         tFin = System.nanoTime();
@@ -231,7 +214,7 @@ public class Lists {
         // ArrayList
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempList = new LinkedList<>(lista);
+            tempList = new ArrayList<>(lista);
             tempList.removeIf(x -> x == prinLista);
         }
         tFin = System.nanoTime();
@@ -251,7 +234,7 @@ public class Lists {
         // ArrayList
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempList = new LinkedList<>(lista);
+            tempList = new ArrayList<>(lista);
             tempList.removeIf(x -> x == midLista);
         }
         tFin = System.nanoTime();
@@ -274,9 +257,10 @@ public class Lists {
         System.out.println("-- Cada medición lleva consigo el tiempo de copia de los arrays --");
         
         System.out.println("                             ArrayList            LinkedList");
+        
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempList = new LinkedList<>(lista);
+            tempList = new ArrayList<>(lista);
             tempList.clear();
         }
         tFin = System.nanoTime();
@@ -297,6 +281,7 @@ public class Lists {
         lista = new ArrayList<>();
         listaEnl = new LinkedList<>();
         tTranscurrido = 0;
+        // Llenado de listas con números ordenados
         for (int i = 0; i < 1000; i++) {
             lista.add(i);
             listaEnl.add(i);
@@ -321,7 +306,7 @@ public class Lists {
             }
         }
         tTranscurrido = (time) / Math.pow(10, 10);
-        System.out.print("- función propia final       " + tTranscurrido + " ms");
+        System.out.print("- final de la lista          " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -351,7 +336,7 @@ public class Lists {
             }
         }
         tTranscurrido = (time) / Math.pow(10, 10);
-        System.out.print("- función propia principio   " + tTranscurrido + " ms");
+        System.out.print("- principio de la lista      " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -381,7 +366,7 @@ public class Lists {
             }
         }
         tTranscurrido = (time) / Math.pow(10, 10);
-        System.out.print("- función propia mitad       " + tTranscurrido + " ms");
+        System.out.print("- mitad de la lista          " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -398,8 +383,38 @@ public class Lists {
         tTranscurrido = (time) / Math.pow(10, 10);
         System.out.println("       " + tTranscurrido + " ms");
         
+        // ArrayList
+        tInicio = System.nanoTime();
+        for (int i = 0; i < 10000; i++) {
+            if (lista.contains(4000000)) {
+                tFin = System.nanoTime();
+                time = tFin - tInicio;
+            }
+            else {
+                tFin = System.nanoTime();
+                time = tFin - tInicio;
+            }
+        }
+        tTranscurrido = (time) / Math.pow(10, 10);
+        System.out.print("- no existente               " + tTranscurrido + " ms");
+        
+        // LinkedList
+        tInicio = System.nanoTime();
+        for (int i = 0; i < 10000; i++) {
+            if (listaEnl.contains(4000000)) {
+                tFin = System.nanoTime();
+                time = tFin - tInicio;
+            }
+            else {
+                tFin = System.nanoTime();
+                time = tFin - tInicio;
+            }
+        }
+        tTranscurrido = (time) / Math.pow(10, 10);
+        System.out.println("       " + tTranscurrido + " ms");
+        
         System.out.println();
-        System.out.println("-- Búsqueda normal --");
+        System.out.println("-- Búsqueda secuencial --");
         System.out.println("                             ArrayList            LinkedList");
         
         // ArrayList
@@ -487,6 +502,34 @@ public class Lists {
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
         System.out.println("      " + tTranscurrido + " ms");
         
+        // ArrayList
+        tInicio = System.nanoTime();
+        for (int i = 0; i < 10000; i++) {
+            encontrado = false;
+            for (int j = 0; j < 1000 && !encontrado; j++) {
+                if (lista.get(j) == 4000000) {
+                    encontrado = true;
+                }
+            }
+        }
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        System.out.print("- no existente               " + tTranscurrido + " ms");
+        
+        // LinkedList
+        tInicio = System.nanoTime();
+        for (int i = 0; i < 10000; i++) {
+            encontrado = false;
+            for (int j = 0; j < 1000 && !encontrado; j++) {
+                if (listaEnl.get(j) == 4000000) {
+                    encontrado = true;
+                }
+            }
+        }
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        System.out.println("      " + tTranscurrido + " ms");
+        
         System.out.println();
         System.out.println("-- Búsqueda binaria --");
         System.out.println("                             ArrayList            LinkedList");
@@ -499,7 +542,7 @@ public class Lists {
             fin = 999;
             mid = (fin + inicio) / 2;
             encontrado = false;
-            while (!encontrado && inicio != mid) {
+            while (!encontrado && inicio < mid) {
                 if (lista.get(mid) == finNum) {
                     encontrado = true;
                 }
@@ -508,12 +551,11 @@ public class Lists {
                 }
                 if (lista.get(mid) > finNum) {
                     fin = mid;
-                    mid = (fin + inicio) / 2;
                 }
                 else if (lista.get(mid) < finNum) {
                     inicio = mid;
-                    mid = (fin + inicio) / 2;
                 }
+                mid = (fin + inicio) / 2;
             }
         }
         tFin = System.nanoTime();
@@ -527,7 +569,7 @@ public class Lists {
             fin = 999;
             mid = (fin + inicio) / 2;
             encontrado = false;
-            while (!encontrado && inicio != mid) {
+            while (!encontrado && inicio < mid) {
                 if (listaEnl.get(mid) == finNum) {
                     encontrado = true;
                 }
@@ -536,12 +578,11 @@ public class Lists {
                 }
                 if (listaEnl.get(mid) > finNum) {
                     fin = mid;
-                    mid = (fin + inicio) / 2;
                 }
                 else if (listaEnl.get(mid) < finNum) {
                     inicio = mid;
-                    mid = (fin + inicio) / 2;
                 }
+                mid = (fin + inicio) / 2;
             }
         }
         tFin = System.nanoTime();
@@ -555,7 +596,7 @@ public class Lists {
             fin = 999;
             mid = (fin + inicio) / 2;
             encontrado = false;
-            while (!encontrado && inicio != mid) {
+            while (!encontrado && inicio < mid) {
                 if (lista.get(mid) == iniNum) {
                     encontrado = true;
                 }
@@ -564,12 +605,11 @@ public class Lists {
                 }
                 if (lista.get(mid) > iniNum) {
                     fin = mid;
-                    mid = (fin + inicio) / 2;
                 }
                 else if (lista.get(mid) < iniNum) {
                     inicio = mid;
-                    mid = (fin + inicio) / 2;
                 }
+                mid = (fin + inicio) / 2;
             }
         }
         tFin = System.nanoTime();
@@ -583,7 +623,7 @@ public class Lists {
             fin = 999;
             mid = (fin + inicio) / 2;
             encontrado = false;
-            while (!encontrado && inicio != mid) {
+            while (!encontrado && inicio < mid) {
                 if (listaEnl.get(mid) == iniNum) {
                     encontrado = true;
                 }
@@ -592,12 +632,11 @@ public class Lists {
                 }
                 if (listaEnl.get(mid) > iniNum) {
                     fin = mid;
-                    mid = (fin + inicio) / 2;
                 }
                 else if (listaEnl.get(mid) < iniNum) {
                     inicio = mid;
-                    mid = (fin + inicio) / 2;
                 }
+                mid = (fin + inicio) / 2;
             }
         }
         tFin = System.nanoTime();
@@ -611,7 +650,7 @@ public class Lists {
             fin = 999;
             mid = (fin + inicio) / 2;
             encontrado = false;
-            while (!encontrado && inicio != mid) {
+            while (!encontrado && inicio < mid) {
                 if (lista.get(mid) == midNum) {
                     encontrado = true;
                 }
@@ -620,12 +659,11 @@ public class Lists {
                 }
                 if (lista.get(mid) > midNum) {
                     fin = mid;
-                    mid = (fin + inicio) / 2;
                 }
                 else if (lista.get(mid) < midNum) {
                     inicio = mid;
-                    mid = (fin + inicio) / 2;
                 }
+                mid = (fin + inicio) / 2;
             }
         }
         tFin = System.nanoTime();
@@ -639,7 +677,7 @@ public class Lists {
             fin = 999;
             mid = (fin + inicio) / 2;
             encontrado = false;
-            while (!encontrado && inicio != mid) {
+            while (!encontrado && inicio < mid) {
                 if (inicio == mid) {
                     break;
                 }
@@ -653,6 +691,63 @@ public class Lists {
                     fin = mid;
                 }
                 else if (listaEnl.get(mid) < midNum) {
+                    inicio = mid;
+                }
+                mid = (fin + inicio) / 2;
+            }
+        }
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        System.out.println("       " + tTranscurrido + " ms");
+        
+        // ArrayList
+        tInicio = System.nanoTime();
+        for (int i = 0; i < 10000; i++) {
+            inicio = 0;
+            fin = 999;
+            mid = (fin + inicio) / 2;
+            encontrado = false;
+            while (!encontrado && inicio < mid) {
+                if (lista.get(mid) == 4000000) {
+                    encontrado = true;
+                }
+                else if (lista.get(fin) == 4000000) {
+                    encontrado = true;
+                }
+                if (lista.get(mid) > 4000000) {
+                    fin = mid;
+                }
+                else if (lista.get(mid) < 4000000) {
+                    inicio = mid;
+                }
+                mid = (fin + inicio) / 2;
+            }
+        }
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        System.out.print("- no existente               " + tTranscurrido + " ms");
+        
+        // LinkedList
+        tInicio = System.nanoTime();
+        for (int i = 0; i < 10000; i++) {
+            inicio = 0;
+            fin = 999;
+            mid = (fin + inicio) / 2;
+            encontrado = false;
+            while (!encontrado && inicio < mid) {
+                if (inicio == mid) {
+                    break;
+                }
+                if (listaEnl.get(mid) == 4000000) {
+                    encontrado = true;
+                }
+                else if (listaEnl.get(fin) == 4000000) {
+                    encontrado = true;
+                }
+                if (listaEnl.get(mid) > 4000000) {
+                    fin = mid;
+                }
+                else if (listaEnl.get(mid) < 4000000) {
                     inicio = mid;
                 }
                 mid = (fin + inicio) / 2;
