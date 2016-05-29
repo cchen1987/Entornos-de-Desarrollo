@@ -744,5 +744,39 @@ public class Sort {
             System.out.print(" " + list5.get(i));
         }
         System.out.println();
+        
+        System.out.println();
+        System.out.println("Búsqueda secuencial en posición 5 del array, valor " + list1.get(5));
+        int num = list1.get(5);
+        if (sequentialSearch(list1, num)) {
+            System.out.println("Encontrado!");
+        }
+        else
+            System.out.println("No encontrado");
+        System.out.println();
+        System.out.println("Búsqueda secuencial con valor no existente en el array");
+        num = 12;
+        if (sequentialSearch(list1, num)) {
+            System.out.println("Encontrado!");
+        }
+        else
+            System.out.println("No encontrado");
+        
+        System.out.println();
+        System.out.println("Búsqueda binaria en posición 5 del array, valor " + list1.get(5));
+        num = list1.get(5);
+        if (binarySearch(list1, num)) {
+            System.out.println("Encontrado!");
+        }
+        else
+            System.out.println("No encontrado");
+        System.out.println();
+        System.out.println("Búsqueda secuencial con valor no existente en el array");
+        num = 12;
+        if (binarySearch(list1, num)) {
+            System.out.println("Encontrado!");
+        }
+        else
+            System.out.println("No encontrado");
     }
 }
