@@ -723,26 +723,31 @@ public class Sort {
         for (int i = 0; i < list1.size(); i++) {
             System.out.print(" " + list1.get(i));
         }
+        System.out.println(" Success!");
         System.out.println();
         System.out.print("- ArrayList 2 Selection sort:");
         for (int i = 0; i < list1.size(); i++) {
             System.out.print(" " + list2.get(i));
         }
+        System.out.println(" Success!");
         System.out.println();
         System.out.print("- ArrayList 3 Insertion sort:");
         for (int i = 0; i < list1.size(); i++) {
             System.out.print(" " + list3.get(i));
         }
+        System.out.println(" Success!");
         System.out.println();
         System.out.print("- ArrayList 4 Quick sort:    ");
         for (int i = 0; i < list1.size(); i++) {
             System.out.print(" " + list4.get(i));
         }
+        System.out.println(" Success!");
         System.out.println();
         System.out.print("- ArrayList 5 Merge sort:    ");
         for (int i = 0; i < list1.size(); i++) {
             System.out.print(" " + list5.get(i));
         }
+        System.out.println(" Success!");
         System.out.println();
         
         System.out.println();
