@@ -20,6 +20,7 @@ public class Sort {
     public Sort() {
         comparaciones = 0;
         swaps = 0;
+        accesos = 0;
         listaAle = new ArrayList<>();
         listaOrd = new ArrayList<>();
         listaInvOrd = new ArrayList<>();
@@ -45,6 +46,7 @@ public class Sort {
                     swaps++;
                 }
                 comparaciones++;
+                accesos++;
             }
         }
     }
@@ -60,12 +62,14 @@ public class Sort {
                 if (list.get(j) < list.get(menor)) {
                     menor = j;
                 }
+                accesos++;
             }
             if (i != menor) {
                 tempInt = list.get(i);
                 list.set(i, list.get(menor));
                 list.set(menor, tempInt);
                 swaps++;
+                accesos++;
             }
         }
     }
@@ -84,7 +88,9 @@ public class Sort {
                 j--;
                 comparaciones++;
                 swaps++;
+                accesos++;
             }
+            accesos++;
         }
     }
     
@@ -109,17 +115,18 @@ public class Sort {
                 i++;
                 swaps++;
             }
+            accesos++;
             comparaciones++;
         }
         
         list.set(right, list.get(i));
         list.set(i, pivot);
+        accesos += 3;
         return i;
     }
     
     public void mergeSort(List<Integer> a, List<Integer> b, int from, int to) {
         if (from < to) {
-            comparaciones++;
             int pivot = (to + from) / 2;
             mergeSort(a, b, from, pivot);
             mergeSort(a, b, pivot + 1, to);
@@ -144,21 +151,25 @@ public class Sort {
                 swaps++;
             }
             i++;
+            accesos++;
         }
         if (h > pivot) {
             for (int k = j; k <= to; k++) {
                 b.set(i, a.get(k));
                 i++;
+                accesos++;
             }
         }
         else {
             for (int k = h; k <= pivot; k++) {
                 b.set(i, a.get(k));
                 i++;
+                accesos++;
             }
         }
         for (int k = from; k <= to; k++) {
             a.set(k, b.get(k));
+            accesos++;
         }
     }
     
@@ -201,7 +212,7 @@ public class Sort {
         List<Integer> tempLista;
         System.out.println("-- Bubble sort --");
         System.out.println("Datos basados en 10 ejecuciones");
-        System.out.println("                             Tiempo             Comparaciones     Swaps");
+        System.out.println("                             Tiempo             Comparaciones     Swaps       accesos");
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -213,7 +224,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + tTranscurrido + " ms      " + comparaciones + "           " + swaps);
+        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "           " + swaps + "       " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -225,7 +236,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + tTranscurrido + " ms      " + comparaciones + "           " + swaps);
+        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "           " + swaps + "            " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -237,7 +248,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms      " + comparaciones + "           " + swaps);
+        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "           " + swaps + "       " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -249,13 +260,13 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + tTranscurrido + " ms      " + comparaciones + "           " + swaps);
+        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "           " + swaps + "            " + accesos);
         
         System.out.println();
         
         System.out.println("-- Selection sort --");
         System.out.println("Datos basados en 10 ejecuciones");
-        System.out.println("                             Tiempo             Comparaciones     Swaps");
+        System.out.println("                             Tiempo             Comparaciones     Swaps       accesos");
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -267,7 +278,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "            " + swaps);
+        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "         " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -279,7 +290,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "            " + swaps);
+        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "           " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -291,7 +302,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "            " + swaps);
+        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "         " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -303,13 +314,13 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "            " + swaps);
+        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "           " + accesos);
         
         System.out.println();
         
         System.out.println("-- Insertion sort --");
         System.out.println("Datos basados en 10 ejecuciones");
-        System.out.println("                             Tiempo             Comparaciones     Swaps");
+        System.out.println("                             Tiempo             Comparaciones     Swaps       accesos");
         
         tInicio = System.nanoTime();
         int j;
@@ -322,7 +333,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "           " + swaps);
+        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "      " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -334,7 +345,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "              " + swaps);
+        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "              " + swaps + "           " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -346,7 +357,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "           " + swaps);
+        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "      " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -358,56 +369,60 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "              " + swaps);
+        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "              " + swaps + "           " + accesos);
         
         System.out.println();
         
         System.out.println("-- Quick sort --");
         System.out.println("Datos basados en 10 ejecuciones");
-        System.out.println("                             Tiempo             Comparaciones     Swaps");
+        System.out.println("                             Tiempo             Comparaciones     Swaps       accesos");
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
             swaps = 0;
             comparaciones = 0;
+            accesos = 0;
             tempLista = new ArrayList<>(listaAle);
             quickSort(tempLista, 0, 999);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "             " + swaps);
+        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "             " + swaps + "        " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
             swaps = 0;
             comparaciones = 0;
+            accesos = 0;
             tempLista = new ArrayList<>(listaOrd);
             quickSort(tempLista, 0, 999);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "            " + swaps);
+        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "      " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
             swaps = 0;
             comparaciones = 0;
+            accesos = 0;
             tempLista = new ArrayList<>(listaInvOrd);
             quickSort(tempLista, 0, 999);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "            " + swaps);
+        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "      " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
             swaps = 0;
             comparaciones = 0;
+            accesos = 0;
             tempLista = new ArrayList<>(listaIgual);
             quickSort(tempLista, 0, 999);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "            " + swaps);
+        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "           " + accesos);
         System.out.println();
         
         List<Integer> temp = new ArrayList<>();
@@ -417,55 +432,59 @@ public class Sort {
         
         System.out.println("-- Merge sort --");
         System.out.println("Datos basados en 10 ejecuciones");
-        System.out.println("                             Tiempo             Comparaciones     Swaps");
+        System.out.println("                             Tiempo             Comparaciones     Swaps       accesos");
         List<Integer> listaApoyo;
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
             swaps = 0;
             comparaciones = 0;
+            accesos = 0;
             tempLista = new ArrayList<>(listaAle);
             listaApoyo = new ArrayList<>(temp);
             mergeSort(tempLista, listaApoyo, 0, 999);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "              " + swaps);
+        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "              " + swaps + "        " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
             swaps = 0;
             comparaciones = 0;
+            accesos = 0;
             tempLista = new ArrayList<>(listaOrd);
             listaApoyo = new ArrayList<>(temp);
             mergeSort(tempLista, listaApoyo, 0, 999);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "              " + swaps);
+        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "              " + swaps + "           " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
             swaps = 0;
             comparaciones = 0;
+            accesos = 0;
             tempLista = new ArrayList<>(listaInvOrd);
             listaApoyo = new ArrayList<>(temp);
             mergeSort(tempLista, listaApoyo, 0, 999);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "              " + swaps);
+        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "              " + swaps + "        " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
             swaps = 0;
             comparaciones = 0;
+            accesos = 0;
             tempLista = new ArrayList<>(listaIgual);
             listaApoyo = new ArrayList<>(temp);
             mergeSort(tempLista, listaApoyo, 0, 999);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "              " + swaps);
+        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "              " + swaps + "           " + accesos);
         System.out.println();
         
         int finNum = listaAle.get(999);
@@ -674,7 +693,7 @@ public class Sort {
         List<Integer> list4 = new ArrayList<>() ;
         List<Integer> list5 = new ArrayList<>() ;
         List<Integer> tempList = new ArrayList<>();
-        
+        boolean notValid;
         for (int i = 0; i < array.length; i++) {
             list1.add(array[i]);
             list2.add(array[i]);
@@ -723,44 +742,99 @@ public class Sort {
         for (int i = 0; i < list1.size(); i++) {
             System.out.print(" " + list1.get(i));
         }
-        System.out.println(" Success!");
+        // Comprobar que se ha ordenado bien
+        notValid = false;
+        for (int i = 0; i < array.length - 1 && !notValid; i++) {
+            if (list1.get(i) > list1.get(i + 1)) {
+                notValid = true;
+            }
+        }
+        if (notValid)
+            System.out.println(" Failed!");
+        else
+            System.out.println(" Success!");
+        
         System.out.println();
         System.out.print("- ArrayList 2 Selection sort:");
         for (int i = 0; i < list1.size(); i++) {
             System.out.print(" " + list2.get(i));
         }
-        System.out.println(" Success!");
+        // Comprobar que se ha ordenado bien
+        notValid = false;
+        for (int i = 0; i < array.length - 1 && !notValid; i++) {
+            if (list1.get(i) > list1.get(i + 1)) {
+                notValid = true;
+            }
+        }
+        if (notValid)
+            System.out.println(" Failed!");
+        else
+            System.out.println(" Success!");
+        
         System.out.println();
         System.out.print("- ArrayList 3 Insertion sort:");
         for (int i = 0; i < list1.size(); i++) {
             System.out.print(" " + list3.get(i));
         }
-        System.out.println(" Success!");
+        // Comprobar que se ha ordenado bien
+        notValid = false;
+        for (int i = 0; i < array.length - 1 && !notValid; i++) {
+            if (list1.get(i) > list1.get(i + 1)) {
+                notValid = true;
+            }
+        }
+        if (notValid)
+            System.out.println(" Failed!");
+        else
+            System.out.println(" Success!");
+        
         System.out.println();
         System.out.print("- ArrayList 4 Quick sort:    ");
         for (int i = 0; i < list1.size(); i++) {
             System.out.print(" " + list4.get(i));
         }
-        System.out.println(" Success!");
+        // Comprobar que se ha ordenado bien
+        notValid = false;
+        for (int i = 0; i < array.length - 1 && !notValid; i++) {
+            if (list1.get(i) > list1.get(i + 1)) {
+                notValid = true;
+            }
+        }
+        if (notValid)
+            System.out.println(" Failed!");
+        else
+            System.out.println(" Success!");
+        
         System.out.println();
         System.out.print("- ArrayList 5 Merge sort:    ");
         for (int i = 0; i < list1.size(); i++) {
             System.out.print(" " + list5.get(i));
         }
-        System.out.println(" Success!");
+        // Comprobar que se ha ordenado bien
+        notValid = false;
+        for (int i = 0; i < array.length - 1 && !notValid; i++) {
+            if (list1.get(i) > list1.get(i + 1)) {
+                notValid = true;
+            }
+        }
+        if (notValid)
+            System.out.println(" Failed!");
+        else
+            System.out.println(" Success!");
+        
         System.out.println();
         
         System.out.println();
-        System.out.println("Búsqueda secuencial en posición 5 del array, valor " + list1.get(5));
         int num = list1.get(5);
+        System.out.println("Búsqueda secuencial en posición 5 del array, valor: " + num);
         if (sequentialSearch(list1, num)) {
             System.out.println("Encontrado!");
         }
         else
             System.out.println("No encontrado");
         System.out.println();
-        System.out.println("Búsqueda secuencial con valor no existente en el array");
         num = 12;
+        System.out.println("Búsqueda secuencial con valor no existente en el array, valor: " + num);
         if (sequentialSearch(list1, num)) {
             System.out.println("Encontrado!");
         }
@@ -768,16 +842,16 @@ public class Sort {
             System.out.println("No encontrado");
         
         System.out.println();
-        System.out.println("Búsqueda binaria en posición 5 del array, valor " + list1.get(5));
         num = list1.get(5);
+        System.out.println("Búsqueda binaria en posición 5 del array, valor " + num);
         if (binarySearch(list1, num)) {
             System.out.println("Encontrado!");
         }
         else
             System.out.println("No encontrado");
         System.out.println();
-        System.out.println("Búsqueda secuencial con valor no existente en el array");
         num = 12;
+        System.out.println("Búsqueda secuencial con valor no existente en el array, valor: " + num);
         if (binarySearch(list1, num)) {
             System.out.println("Encontrado!");
         }
