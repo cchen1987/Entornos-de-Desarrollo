@@ -1,5 +1,6 @@
 package p5;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class Lists {
     String color;
     String colorEnl;
     int tempInt;
+    DecimalFormat df;
     
     public Lists() {
         rnd = new Random();
@@ -36,152 +38,168 @@ public class Lists {
         for (int i = 0; i < 1000; i++) {
             listaEnl.add(rnd.nextInt(2000000));
         }
+        tempList = new ArrayList<>(lista);
+        tempListEnl = new LinkedList<>(listaEnl);
+        df = new DecimalFormat("#.##########");
     }
     
     public void insertar() {
         System.out.println("-- Inserción --");
         System.out.println("-- Cada medición lleva consigo el tiempo de copia de los arrays --");
         tTranscurrido = 0;
-        
+        int sum = 0;
         System.out.println("                             ArrayList            LinkedList");
         // ArrayList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempList = new ArrayList<>(lista);
+            tInicio = System.nanoTime();
             tempList.add(0);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempList.remove(1000);
         }
-        tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        
+        tTranscurrido = sum / Math.pow(10, 10);
+        sum = 0;
         // LinkedList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempListEnl = new LinkedList<>(listaEnl);
+            tInicio = System.nanoTime();
             tempListEnl.add(0);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempListEnl.remove(1000);
         }
-        tFin = System.nanoTime();
-        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        tTranscurridoEnl = sum / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- al final de la lista       " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- al final de la lista       " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
+        sum = 0;
         // ArrayList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempList = new ArrayList<>(lista);
+            tInicio = System.nanoTime();
             tempList.add(0, 0);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempList.remove(0);
         }
-        tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        
+        tTranscurrido = sum / Math.pow(10, 10);
+        sum = 0;
         // LinkedList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempListEnl = new LinkedList<>(listaEnl);
+            tInicio = System.nanoTime();
             tempListEnl.add(0, 0);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempListEnl.remove(0);
         }
-        tFin = System.nanoTime();
-        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        tTranscurridoEnl = sum / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- al principio de la lista   " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
-        
+        System.out.println("- al principio de la lista   " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
+        sum = 0;
         // ArrayList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempList = new ArrayList<>(lista);
+            tInicio = System.nanoTime();
             tempList.add(499, 0);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempList.remove(499);
         }
-        tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        
+        tTranscurrido = sum / Math.pow(10, 10);
+        sum = 0;
         // LinkedList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempListEnl = new LinkedList<>(listaEnl);
+            tInicio = System.nanoTime();
             tempListEnl.add(499, 0);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempListEnl.remove(499);
         }
-        tFin = System.nanoTime();
-        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        tTranscurridoEnl = sum / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- a mitad de la lista        " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- a mitad de la lista        " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
     }
     
     public void borrarPorPosicion() {
         System.out.println("-- Borrado por posición --");
         System.out.println("-- Cada medición lleva consigo el tiempo de copia de los arrays --");
         tTranscurrido = 0;
-        
+        int sum = 0;
         System.out.println("                             ArrayList            LinkedList");
         // ArrayList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempList = new ArrayList<>(lista);
+            tInicio = System.nanoTime();
             tempList.remove(999);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempList.add(0);
         }
-        tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        
+        tTranscurrido = sum / Math.pow(10, 10);
+        sum = 0;
         // LinkedList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempListEnl = new LinkedList<>(listaEnl);
+            tInicio = System.nanoTime();
             tempListEnl.remove(999);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempListEnl.add(0);
         }
-        tFin = System.nanoTime();
-        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        tTranscurridoEnl = sum / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- al final de la lista       " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
-        
+        System.out.println("- al final de la lista       " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
+        sum = 0;
         // ArrayList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempList = new ArrayList<>(lista);
+            tInicio = System.nanoTime();
             tempList.remove(0);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempList.add(0, 0);
         }
-        tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        
+        tTranscurrido = sum / Math.pow(10, 10);
+        sum = 0;
         // LinkedList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempListEnl = new LinkedList<>(listaEnl);
+            tInicio = System.nanoTime();
             tempListEnl.remove(0);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempListEnl.add(0, 0);
         }
-        tFin = System.nanoTime();
-        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        tTranscurridoEnl = sum / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- al principio de la lista   " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
-        
+        System.out.println("- al principio de la lista   " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
+        sum = 0;
         // ArrayList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempList = new ArrayList<>(lista);
+            tInicio = System.nanoTime();
             tempList.remove(499);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempList.add(499, 0);
         }
-        tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        
+        tTranscurrido = sum / Math.pow(10, 10);
+        sum = 0;
         // LinkedList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempListEnl = new LinkedList<>(listaEnl);
+            tInicio = System.nanoTime();
             tempListEnl.remove(499);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempListEnl.add(499, 0);
         }
-        tFin = System.nanoTime();
-        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        tTranscurridoEnl = sum / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- a mitad de la lista        " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- a mitad de la lista        " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
     }
     
     public void borrarPorValor() {
@@ -191,7 +209,8 @@ public class Lists {
             lista.add(i);
             listaEnl.add(i);
         }
-        
+        tempList = new ArrayList<>(lista);
+        tempListEnl = new LinkedList<>(listaEnl);
         int finLista = lista.get(999);
         int prinLista = lista.get(0);
         int midLista = lista.get(499);
@@ -202,100 +221,121 @@ public class Lists {
         System.out.println("-- Borrado por valor --");
         System.out.println("-- Cada medición lleva consigo el tiempo de copia de los arrays --");
         tTranscurrido = 0;
-        
+        int sum = 0;
         System.out.println("                             ArrayList            LinkedList");
         // ArrayList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempList = new ArrayList<>(lista);
+            tInicio = System.nanoTime();
             tempList.removeIf(x -> x == finLista);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempList.add(finLista);
         }
-        tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        
+        tTranscurrido = sum / Math.pow(10, 10);
+        sum = 0;
         // LinkedList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempListEnl = new LinkedList<>(listaEnl);
+            tInicio = System.nanoTime();
             tempListEnl.removeIf(x -> x == finListaEnl);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempListEnl.add(finListaEnl);
         }
-        tFin = System.nanoTime();
-        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        tTranscurridoEnl = sum / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- al final de la lista       " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
-        
+        System.out.println("- al final de la lista       " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
+        sum = 0;
         // ArrayList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempList = new ArrayList<>(lista);
+            tInicio = System.nanoTime();
             tempList.removeIf(x -> x == prinLista);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempList.add(0, prinLista);
         }
-        tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        
+        tTranscurrido = sum / Math.pow(10, 10);
+        sum = 0;
         // LinkedList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempListEnl = new LinkedList<>(listaEnl);
+            tInicio = System.nanoTime();
             tempListEnl.removeIf(x -> x == prinListaEnl);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempListEnl.add(0, prinListaEnl);
         }
-        tFin = System.nanoTime();
-        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        tTranscurridoEnl = sum / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- al principio de la lista   " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
-        
+        System.out.println("- al principio de la lista   " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
+        sum = 0;
         // ArrayList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempList = new ArrayList<>(lista);
+            tInicio = System.nanoTime();
             tempList.removeIf(x -> x == midLista);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempList.add(499, midLista);
         }
-        tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        
+        tTranscurrido = sum / Math.pow(10, 10);
+        sum = 0;
         // LinkedList
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempListEnl = new LinkedList<>(listaEnl);
+            tInicio = System.nanoTime();
             tempListEnl.removeIf(x -> x == midListaEnl);
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
+            tempListEnl.add(499, midListaEnl);
         }
-        tFin = System.nanoTime();
-        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        tTranscurridoEnl = sum / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- a mitad de la lista        " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- a mitad de la lista        " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
     }
     
     public void vaciado() {
+        double tCopiaLista, tCopiaListaEnl;
+        tInicio = System.nanoTime();
+        for (int i = 0; i < 10000; i++) {
+            tempList = new ArrayList<>(lista);
+        }
+        tFin = System.nanoTime();
+        tCopiaLista = (tFin - tInicio) / Math.pow(10, 10);
+        
+        tInicio = System.nanoTime();
+        for (int i = 0; i < 10000; i++) {
+            tempListEnl = new LinkedList<>(listaEnl);
+        }
+        tFin = System.nanoTime();
+        tCopiaListaEnl = (tFin - tInicio) / Math.pow(10, 10);
+        
         System.out.println("-- Vaciado --");
         System.out.println("-- Cada medición lleva consigo el tiempo de copia de los arrays --");
         
         System.out.println("                             ArrayList            LinkedList");
-        
+        int sum = 0;
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
             tempList = new ArrayList<>(lista);
             tempList.clear();
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10) - tCopiaLista;
+        sum = 0;
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
             tempListEnl = new LinkedList<>(listaEnl);
             tempListEnl.clear();
         }
         tFin = System.nanoTime();
-        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10) - tCopiaListaEnl;
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- Vaciado del array          " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- Vaciado del array          " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
     }
     
     public void busqueda() {
@@ -343,8 +383,8 @@ public class Lists {
         tTranscurridoEnl = (time) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- al final de la lista       " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- al final de la lista       " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -375,8 +415,8 @@ public class Lists {
         tTranscurridoEnl = (time) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- al principio de la lista   " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- al principio de la lista   " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -407,8 +447,8 @@ public class Lists {
         tTranscurridoEnl = (time) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- a mitad de la lista        " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- a mitad de la lista        " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -439,8 +479,8 @@ public class Lists {
         tTranscurridoEnl = (time) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- no existente               " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- no existente               " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
         System.out.println();
         System.out.println("-- Búsqueda secuencial --");
@@ -474,8 +514,8 @@ public class Lists {
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- al final de la lista       " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- al final de la lista       " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -504,8 +544,8 @@ public class Lists {
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- al principio de la lista   " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- al principio de la lista   " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -534,8 +574,8 @@ public class Lists {
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- a mitad de la lista        " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- a mitad de la lista        " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -564,8 +604,8 @@ public class Lists {
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- no existente               " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- no existente               " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
         System.out.println();
         System.out.println("-- Búsqueda binaria --");
@@ -625,8 +665,8 @@ public class Lists {
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- al final de la lista       " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- al final de la lista       " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -681,8 +721,8 @@ public class Lists {
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- al principio de la lista   " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- al principio de la lista   " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -740,8 +780,8 @@ public class Lists {
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- a mitad de la lista        " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- a mitad de la lista        " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -799,8 +839,8 @@ public class Lists {
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
-        System.out.println("- no existente               " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
-                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
+        System.out.println("- no existente               " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
+                (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
     }
     
     public void RunTimes() {
