@@ -18,8 +18,9 @@ public class Lists {
     double tInicio;
     double tFin;
     double tTranscurrido;
-    double tCopiaLista;
-    double tCopiaListaEnl;
+    double tTranscurridoEnl;
+    String color;
+    String colorEnl;
     int tempInt;
     
     public Lists() {
@@ -51,7 +52,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- al final de la lista       " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -60,8 +60,11 @@ public class Lists {
             tempListEnl.add(0);
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("      " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- al final de la lista       " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -71,7 +74,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- al principio de la lista   " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -80,8 +82,11 @@ public class Lists {
             tempListEnl.add(0, 0);
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("      " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- al principio de la lista   " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -91,7 +96,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- a mitad de la lista        " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -100,8 +104,11 @@ public class Lists {
             tempListEnl.add(499, 0);
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("      " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- a mitad de la lista        " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
     }
     
     public void borrarPorPosicion() {
@@ -118,7 +125,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- al final de la lista       " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -127,8 +133,11 @@ public class Lists {
             tempListEnl.remove(999);
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("      " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- al final de la lista       " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -138,7 +147,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- al principio de la lista   " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -147,8 +155,11 @@ public class Lists {
             tempListEnl.remove(0);
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("       " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- al principio de la lista   " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -158,7 +169,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- a mitad de la lista        " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -167,8 +177,11 @@ public class Lists {
             tempListEnl.remove(499);
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("       " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- a mitad de la lista        " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
     }
     
     public void borrarPorValor() {
@@ -199,7 +212,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- al final de la lista       " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -208,8 +220,11 @@ public class Lists {
             tempListEnl.removeIf(x -> x == finListaEnl);
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("      " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- al final de la lista       " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -219,7 +234,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- al principio de la lista   " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -228,8 +242,11 @@ public class Lists {
             tempListEnl.removeIf(x -> x == prinListaEnl);
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("      " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- al principio de la lista   " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -239,7 +256,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- a mitad de la lista        " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -248,8 +264,11 @@ public class Lists {
             tempListEnl.removeIf(x -> x == midListaEnl);
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("      " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- a mitad de la lista        " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
     }
     
     public void vaciado() {
@@ -265,7 +284,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- Vaciado del array          " + tTranscurrido + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -273,8 +291,11 @@ public class Lists {
             tempListEnl.clear();
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("      " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- Vaciado del array          " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
     }
     
     public void busqueda() {
@@ -306,7 +327,6 @@ public class Lists {
             }
         }
         tTranscurrido = (time) / Math.pow(10, 10);
-        System.out.print("- final de la lista          " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -320,8 +340,11 @@ public class Lists {
                 time = tFin - tInicio;
             }
         }
-        tTranscurrido = (time) / Math.pow(10, 10);
-        System.out.println("      " + tTranscurrido + " ms");
+        tTranscurridoEnl = (time) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- al final de la lista       " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -336,7 +359,6 @@ public class Lists {
             }
         }
         tTranscurrido = (time) / Math.pow(10, 10);
-        System.out.print("- principio de la lista      " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -350,8 +372,11 @@ public class Lists {
                 time = tFin - tInicio;
             }
         }
-        tTranscurrido = (time) / Math.pow(10, 10);
-        System.out.println("        " + tTranscurrido + " ms");
+        tTranscurridoEnl = (time) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- al principio de la lista   " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -366,7 +391,6 @@ public class Lists {
             }
         }
         tTranscurrido = (time) / Math.pow(10, 10);
-        System.out.print("- mitad de la lista          " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -380,8 +404,11 @@ public class Lists {
                 time = tFin - tInicio;
             }
         }
-        tTranscurrido = (time) / Math.pow(10, 10);
-        System.out.println("       " + tTranscurrido + " ms");
+        tTranscurridoEnl = (time) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- a mitad de la lista        " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -396,7 +423,6 @@ public class Lists {
             }
         }
         tTranscurrido = (time) / Math.pow(10, 10);
-        System.out.print("- no existente               " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -410,8 +436,11 @@ public class Lists {
                 time = tFin - tInicio;
             }
         }
-        tTranscurrido = (time) / Math.pow(10, 10);
-        System.out.println("       " + tTranscurrido + " ms");
+        tTranscurridoEnl = (time) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- no existente               " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         System.out.println();
         System.out.println("-- Búsqueda secuencial --");
@@ -430,7 +459,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- final de la lista          " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -443,8 +471,11 @@ public class Lists {
             }
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("      " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- al final de la lista       " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -458,7 +489,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- principio de la lista      " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -471,8 +501,11 @@ public class Lists {
             }
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("         " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- al principio de la lista   " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -486,7 +519,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- mitad de la lista          " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -499,8 +531,11 @@ public class Lists {
             }
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("      " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- a mitad de la lista        " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -514,7 +549,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- no existente               " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -527,8 +561,11 @@ public class Lists {
             }
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("      " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- no existente               " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         System.out.println();
         System.out.println("-- Búsqueda binaria --");
@@ -560,7 +597,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- final de la lista          " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -586,8 +622,11 @@ public class Lists {
             }
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("       " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- al final de la lista       " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -614,7 +653,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- principio de la lista      " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -640,8 +678,11 @@ public class Lists {
             }
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("       " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- al principio de la lista   " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -668,7 +709,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- mitad de la lista          " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -697,8 +737,11 @@ public class Lists {
             }
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("       " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- a mitad de la lista        " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
         
         // ArrayList
         tInicio = System.nanoTime();
@@ -725,7 +768,6 @@ public class Lists {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.print("- no existente               " + tTranscurrido + " ms");
         
         // LinkedList
         tInicio = System.nanoTime();
@@ -754,8 +796,11 @@ public class Lists {
             }
         }
         tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("       " + tTranscurrido + " ms");
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
+        color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
+        System.out.println("- no existente               " + (char)27 + color + tTranscurrido + " ms"+ "      " + 
+                (char)27 + colorEnl + tTranscurridoEnl + " ms" + (char)27 + "[0m");
     }
     
     public void RunTimes() {

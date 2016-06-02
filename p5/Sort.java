@@ -750,9 +750,9 @@ public class Sort {
             }
         }
         if (notValid)
-            System.out.println(" Failed!");
+            System.out.println((char)27 + "[37;31m Failed!" + (char)27 + "[0m");
         else
-            System.out.println(" Success!");
+            System.out.println((char)27 + "[37;32m Success!" + (char)27 + "[0m");
         
         System.out.println();
         System.out.print("- ArrayList 2 Selection sort:");
@@ -767,9 +767,9 @@ public class Sort {
             }
         }
         if (notValid)
-            System.out.println(" Failed!");
+            System.out.println((char)27 + "[37;31m Failed!" + (char)27 + "[0m");
         else
-            System.out.println(" Success!");
+            System.out.println((char)27 + "[37;32m Success!" + (char)27 + "[0m");
         
         System.out.println();
         System.out.print("- ArrayList 3 Insertion sort:");
@@ -784,9 +784,9 @@ public class Sort {
             }
         }
         if (notValid)
-            System.out.println(" Failed!");
+            System.out.println((char)27 + "[37;31m Failed!" + (char)27 + "[0m");
         else
-            System.out.println(" Success!");
+            System.out.println((char)27 + "[37;32m Success!" + (char)27 + "[0m");
         
         System.out.println();
         System.out.print("- ArrayList 4 Quick sort:    ");
@@ -801,9 +801,9 @@ public class Sort {
             }
         }
         if (notValid)
-            System.out.println(" Failed!");
+            System.out.println((char)27 + "[37;31m Failed!" + (char)27 + "[0m");
         else
-            System.out.println(" Success!");
+            System.out.println((char)27 + "[37;32m Success!" + (char)27 + "[0m");
         
         System.out.println();
         System.out.print("- ArrayList 5 Merge sort:    ");
@@ -818,9 +818,9 @@ public class Sort {
             }
         }
         if (notValid)
-            System.out.println(" Failed!");
+            System.out.println((char)27 + "[37;31m Failed!" + (char)27 + "[0m");
         else
-            System.out.println(" Success!");
+            System.out.println((char)27 + "[37;32m Success!" + (char)27 + "[0m");
         
         System.out.println();
         
@@ -828,34 +828,34 @@ public class Sort {
         int num = list1.get(5);
         System.out.println("Búsqueda secuencial en posición 5 del array, valor: " + num);
         if (sequentialSearch(list1, num)) {
-            System.out.println("Encontrado!");
+            System.out.println((char)27 + "[37;32mEncontrado!" + (char)27 + "[0m");
         }
         else
-            System.out.println("No encontrado");
+            System.out.println((char)27 + "[37;31mNo encontrado" + (char)27 + "[0m");
         System.out.println();
         num = 12;
         System.out.println("Búsqueda secuencial con valor no existente en el array, valor: " + num);
         if (sequentialSearch(list1, num)) {
-            System.out.println("Encontrado!");
+            System.out.println((char)27 + "[37;32mEncontrado!" + (char)27 + "[0m");
         }
         else
-            System.out.println("No encontrado");
+            System.out.println((char)27 + "[37;31mNo encontrado" + (char)27 + "[0m");
         
         System.out.println();
         num = list1.get(5);
         System.out.println("Búsqueda binaria en posición 5 del array, valor " + num);
-        if (binarySearch(list1, num)) {
-            System.out.println("Encontrado!");
+        if (sequentialSearch(list1, num)) {
+            System.out.println((char)27 + "[37;32mEncontrado!" + (char)27 + "[0m");
         }
         else
-            System.out.println("No encontrado");
+            System.out.println((char)27 + "[37;31mNo encontrado" + (char)27 + "[0m");
         System.out.println();
         num = 12;
         System.out.println("Búsqueda secuencial con valor no existente en el array, valor: " + num);
-        if (binarySearch(list1, num)) {
-            System.out.println("Encontrado!");
+        if (sequentialSearch(list1, num)) {
+            System.out.println((char)27 + "[37;32mEncontrado!" + (char)27 + "[0m");
         }
         else
-            System.out.println("No encontrado");
+            System.out.println((char)27 + "[37;31mNo encontrado" + (char)27 + "[0m");
     }
 }
