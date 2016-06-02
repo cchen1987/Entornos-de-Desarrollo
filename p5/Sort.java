@@ -1,5 +1,6 @@
 package p5;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,6 +17,7 @@ public class Sort {
     int swaps;
     int comparaciones;
     int accesos;
+    DecimalFormat df;
     
     public Sort() {
         comparaciones = 0;
@@ -32,6 +34,7 @@ public class Sort {
             listaInvOrd.add(999 - i);
             listaIgual.add(0);
         }
+        df = new DecimalFormat("0.0000000000");
     }
     
     public void bubbleSort(List<Integer> list) {
@@ -224,7 +227,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "           " + swaps + "       " + accesos);
+        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "      " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -236,7 +239,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "           " + swaps + "            " + accesos);
+        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "           " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -248,7 +251,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "           " + swaps + "       " + accesos);
+        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "      " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -260,7 +263,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "           " + swaps + "            " + accesos);
+        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "           " + accesos);
         
         System.out.println();
         
@@ -278,7 +281,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "         " + accesos);
+        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "         " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -290,7 +293,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "           " + accesos);
+        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "           " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -302,7 +305,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "         " + accesos);
+        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "         " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -314,7 +317,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "           " + accesos);
+        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "           " + accesos);
         
         System.out.println();
         
@@ -333,7 +336,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "      " + accesos);
+        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "      " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -345,7 +348,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "              " + swaps + "           " + accesos);
+        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + swaps + "           " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -357,7 +360,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "      " + accesos);
+        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "      " + accesos);
         
         tInicio = System.nanoTime();
         for (int k = 0; k < 10; k++) {
@@ -369,7 +372,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "              " + swaps + "           " + accesos);
+        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + swaps + "           " + accesos);
         
         System.out.println();
         
@@ -386,7 +389,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "             " + swaps + "        " + accesos);
+        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + comparaciones + "             " + swaps + "        " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
@@ -398,7 +401,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "      " + accesos);
+        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "      " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
@@ -410,7 +413,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "      " + accesos);
+        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "      " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
@@ -422,7 +425,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "            " + swaps + "           " + accesos);
+        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "           " + accesos);
         System.out.println();
         
         List<Integer> temp = new ArrayList<>();
@@ -445,7 +448,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + tTranscurrido + " ms       " + comparaciones + "              " + swaps + "        " + accesos);
+        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + swaps + "        " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
@@ -458,7 +461,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + tTranscurrido + " ms       " + comparaciones + "              " + swaps + "           " + accesos);
+        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + swaps + "           " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
@@ -471,7 +474,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + tTranscurrido + " ms       " + comparaciones + "              " + swaps + "        " + accesos);
+        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + swaps + "        " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
@@ -484,15 +487,15 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + tTranscurrido + " ms       " + comparaciones + "              " + swaps + "           " + accesos);
+        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + swaps + "           " + accesos);
         System.out.println();
         
         int finNum = listaAle.get(999);
         int midNum = listaAle.get(499);
         int prinNum = listaAle.get(0);
         int notNum = 30000;
-        System.out.println("-- Sequential search --");
         System.out.println("Datos basados en 10000 ejecuciones");
+        System.out.println("-- Sequential search --");
         System.out.println("                             Tiempos");
         System.out.println("- datos aleatorios -");
         tInicio = System.nanoTime();
@@ -501,7 +504,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- al final                   " + tTranscurrido + " ms");
+        System.out.println("- al final                   " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -509,7 +512,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- al principio               " + tTranscurrido + " ms");
+        System.out.println("- al principio               " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -517,7 +520,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- a mitad                    " + tTranscurrido + " ms");
+        System.out.println("- a mitad                    " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -525,7 +528,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- no existente               " + tTranscurrido + " ms");
+        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms");
         
         finNum = listaOrd.get(999);
         prinNum = listaOrd.get(0);
@@ -539,7 +542,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- al final                   " + tTranscurrido + " ms");
+        System.out.println("- al final                   " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -547,7 +550,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- al principio               " + tTranscurrido + " ms");
+        System.out.println("- al principio               " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -555,7 +558,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- a mitad                    " + tTranscurrido + " ms");
+        System.out.println("- a mitad                    " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -563,7 +566,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- no existente               " + tTranscurrido + " ms");
+        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms");
         
         finNum = listaInvOrd.get(999);
         midNum = listaInvOrd.get(499);
@@ -577,7 +580,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- al final                   " + tTranscurrido + " ms");
+        System.out.println("- al final                   " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -585,7 +588,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- al principio               " + tTranscurrido + " ms");
+        System.out.println("- al principio               " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -593,7 +596,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- a mitad                    " + tTranscurrido + " ms");
+        System.out.println("- a mitad                    " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -601,7 +604,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- no existente               " + tTranscurrido + " ms");
+        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms");
         
         prinNum = listaIgual.get(999);
         
@@ -613,7 +616,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- existente                  " + tTranscurrido + " ms");
+        System.out.println("- existente                  " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -621,17 +624,17 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- no existente               " + tTranscurrido + " ms");
+        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms");
         
         prinNum = listaOrd.get(0);
         finNum = listaOrd.get(999);
         midNum = listaOrd.get(499);
         
         System.out.println();
-        System.out.println("-- Binary search (Sólo para arrays ordenados o arrays con el mismo numero en todas sus posiciones) --");
-        System.out.println("                             Tiempos --");
-        
         System.out.println("Datos basados en 10000 ejecuciones");
+        System.out.println("-- Binary search (Sólo para arrays ordenados o arrays con el mismo numero en todas sus posiciones) --");
+        System.out.println("                             Tiempos");
+        
         System.out.println("- datos ordenados o inversamente ordenados -");
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -639,7 +642,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- al final                   " + tTranscurrido + " ms");
+        System.out.println("- al final                   " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -647,7 +650,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- al principio               " + tTranscurrido + " ms");
+        System.out.println("- al principio               " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -655,7 +658,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- a mitad                    " + tTranscurrido + " ms");
+        System.out.println("- a mitad                    " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -663,7 +666,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- no existente               " + tTranscurrido + " ms");
+        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms");
         
         System.out.println();
         System.out.println("- datos iguales -");
@@ -673,7 +676,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- existente                  " + tTranscurrido + " ms");
+        System.out.println("- existente                  " + df.format(tTranscurrido) + " ms");
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
@@ -681,7 +684,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
-        System.out.println("- no existente               " + tTranscurrido + " ms");
+        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms");
         
     }
     

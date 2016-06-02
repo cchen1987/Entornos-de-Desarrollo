@@ -40,12 +40,11 @@ public class Lists {
         }
         tempList = new ArrayList<>(lista);
         tempListEnl = new LinkedList<>(listaEnl);
-        df = new DecimalFormat("#.##########");
+        df = new DecimalFormat("0.0000000000");
     }
     
     public void insertar() {
         System.out.println("-- Inserción --");
-        System.out.println("-- Cada medición lleva consigo el tiempo de copia de los arrays --");
         tTranscurrido = 0;
         int sum = 0;
         System.out.println("                             ArrayList            LinkedList");
@@ -125,7 +124,6 @@ public class Lists {
     
     public void borrarPorPosicion() {
         System.out.println("-- Borrado por posición --");
-        System.out.println("-- Cada medición lleva consigo el tiempo de copia de los arrays --");
         tTranscurrido = 0;
         int sum = 0;
         System.out.println("                             ArrayList            LinkedList");
@@ -219,7 +217,6 @@ public class Lists {
         int midListaEnl = listaEnl.get(499);
         
         System.out.println("-- Borrado por valor --");
-        System.out.println("-- Cada medición lleva consigo el tiempo de copia de los arrays --");
         tTranscurrido = 0;
         int sum = 0;
         System.out.println("                             ArrayList            LinkedList");
@@ -297,41 +294,27 @@ public class Lists {
     }
     
     public void vaciado() {
-        double tCopiaLista, tCopiaListaEnl;
-        tInicio = System.nanoTime();
-        for (int i = 0; i < 10000; i++) {
-            tempList = new ArrayList<>(lista);
-        }
-        tFin = System.nanoTime();
-        tCopiaLista = (tFin - tInicio) / Math.pow(10, 10);
-        
-        tInicio = System.nanoTime();
-        for (int i = 0; i < 10000; i++) {
-            tempListEnl = new LinkedList<>(listaEnl);
-        }
-        tFin = System.nanoTime();
-        tCopiaListaEnl = (tFin - tInicio) / Math.pow(10, 10);
-        
         System.out.println("-- Vaciado --");
-        System.out.println("-- Cada medición lleva consigo el tiempo de copia de los arrays --");
-        
         System.out.println("                             ArrayList            LinkedList");
         int sum = 0;
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
             tempList = new ArrayList<>(lista);
+            tInicio = System.nanoTime();
             tempList.clear();
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
         }
-        tFin = System.nanoTime();
-        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10) - tCopiaLista;
+        tTranscurrido = sum / Math.pow(10, 10);
+        
         sum = 0;
-        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
             tempListEnl = new LinkedList<>(listaEnl);
+            tInicio = System.nanoTime();
             tempListEnl.clear();
+            tFin = System.nanoTime();
+            sum += tFin - tInicio;
         }
-        tFin = System.nanoTime();
-        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10) - tCopiaListaEnl;
+        tTranscurridoEnl = sum / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- Vaciado del array          " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
