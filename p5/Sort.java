@@ -435,11 +435,10 @@ public class Sort {
         
         System.out.println("-- Merge sort --");
         System.out.println("Datos basados en 10 ejecuciones");
-        System.out.println("                             Tiempo             Comparaciones     Swaps       accesos");
+        System.out.println("                             Tiempo             Comparaciones       accesos");
         List<Integer> listaApoyo;
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
-            swaps = 0;
             comparaciones = 0;
             accesos = 0;
             tempLista = new ArrayList<>(listaAle);
@@ -448,11 +447,10 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + swaps + "        " + accesos);
+        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + comparaciones + "                " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
-            swaps = 0;
             comparaciones = 0;
             accesos = 0;
             tempLista = new ArrayList<>(listaOrd);
@@ -461,11 +459,10 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + swaps + "           " + accesos);
+        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + comparaciones + "                " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
-            swaps = 0;
             comparaciones = 0;
             accesos = 0;
             tempLista = new ArrayList<>(listaInvOrd);
@@ -474,11 +471,10 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + swaps + "        " + accesos);
+        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + comparaciones + "                " + accesos);
         
         tInicio = System.nanoTime();
         for (int i = 0; i < 10; i++) {
-            swaps = 0;
             comparaciones = 0;
             accesos = 0;
             tempLista = new ArrayList<>(listaIgual);
@@ -487,7 +483,7 @@ public class Sort {
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + swaps + "           " + accesos);
+        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + comparaciones + "                " + accesos);
         System.out.println();
         
         int finNum = listaAle.get(999);

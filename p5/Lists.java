@@ -209,12 +209,9 @@ public class Lists {
         }
         tempList = new ArrayList<>(lista);
         tempListEnl = new LinkedList<>(listaEnl);
-        int finLista = lista.get(999);
-        int prinLista = lista.get(0);
-        int midLista = lista.get(499);
-        int finListaEnl = listaEnl.get(999);
-        int prinListaEnl = listaEnl.get(0);
-        int midListaEnl = listaEnl.get(499);
+        int finLista = new Integer(999);
+        int prinLista = new Integer(0);
+        int midLista = new Integer(499);
         
         System.out.println("-- Borrado por valor --");
         tTranscurrido = 0;
@@ -223,7 +220,7 @@ public class Lists {
         // ArrayList
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
-            tempList.removeIf(x -> x == finLista);
+            tempList.remove(finLista);
             tFin = System.nanoTime();
             sum += tFin - tInicio;
             tempList.add(finLista);
@@ -233,10 +230,10 @@ public class Lists {
         // LinkedList
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
-            tempListEnl.removeIf(x -> x == finListaEnl);
+            tempListEnl.remove(finLista);
             tFin = System.nanoTime();
             sum += tFin - tInicio;
-            tempListEnl.add(finListaEnl);
+            tempListEnl.add(finLista);
         }
         tTranscurridoEnl = sum / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
@@ -247,7 +244,7 @@ public class Lists {
         // ArrayList
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
-            tempList.removeIf(x -> x == prinLista);
+            tempList.remove(prinLista);
             tFin = System.nanoTime();
             sum += tFin - tInicio;
             tempList.add(0, prinLista);
@@ -257,10 +254,10 @@ public class Lists {
         // LinkedList
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
-            tempListEnl.removeIf(x -> x == prinListaEnl);
+            tempListEnl.remove(prinLista);
             tFin = System.nanoTime();
             sum += tFin - tInicio;
-            tempListEnl.add(0, prinListaEnl);
+            tempListEnl.add(0, prinLista);
         }
         tTranscurridoEnl = sum / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
@@ -271,7 +268,7 @@ public class Lists {
         // ArrayList
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
-            tempList.removeIf(x -> x == midLista);
+            tempList.remove(midLista);
             tFin = System.nanoTime();
             sum += tFin - tInicio;
             tempList.add(499, midLista);
@@ -281,10 +278,10 @@ public class Lists {
         // LinkedList
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
-            tempListEnl.removeIf(x -> x == midListaEnl);
+            tempListEnl.remove(midLista);
             tFin = System.nanoTime();
             sum += tFin - tInicio;
-            tempListEnl.add(499, midListaEnl);
+            tempListEnl.add(499, midLista);
         }
         tTranscurridoEnl = sum / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
