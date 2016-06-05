@@ -755,13 +755,13 @@ public class Sort {
         
         System.out.println();
         System.out.print("- ArrayList 2 Selection sort:");
-        for (int i = 0; i < list1.size(); i++) {
+        for (int i = 0; i < list2.size(); i++) {
             System.out.print(" " + list2.get(i));
         }
         // Comprobar que se ha ordenado bien
         notValid = false;
         for (int i = 0; i < array.length - 1 && !notValid; i++) {
-            if (list1.get(i) > list1.get(i + 1)) {
+            if (list2.get(i) > list2.get(i + 1)) {
                 notValid = true;
             }
         }
@@ -772,13 +772,13 @@ public class Sort {
         
         System.out.println();
         System.out.print("- ArrayList 3 Insertion sort:");
-        for (int i = 0; i < list1.size(); i++) {
+        for (int i = 0; i < list3.size(); i++) {
             System.out.print(" " + list3.get(i));
         }
         // Comprobar que se ha ordenado bien
         notValid = false;
         for (int i = 0; i < array.length - 1 && !notValid; i++) {
-            if (list1.get(i) > list1.get(i + 1)) {
+            if (list3.get(i) > list3.get(i + 1)) {
                 notValid = true;
             }
         }
@@ -789,13 +789,13 @@ public class Sort {
         
         System.out.println();
         System.out.print("- ArrayList 4 Quick sort:    ");
-        for (int i = 0; i < list1.size(); i++) {
+        for (int i = 0; i < list4.size(); i++) {
             System.out.print(" " + list4.get(i));
         }
         // Comprobar que se ha ordenado bien
         notValid = false;
         for (int i = 0; i < array.length - 1 && !notValid; i++) {
-            if (list1.get(i) > list1.get(i + 1)) {
+            if (list4.get(i) > list4.get(i + 1)) {
                 notValid = true;
             }
         }
@@ -806,13 +806,13 @@ public class Sort {
         
         System.out.println();
         System.out.print("- ArrayList 5 Merge sort:    ");
-        for (int i = 0; i < list1.size(); i++) {
+        for (int i = 0; i < list5.size(); i++) {
             System.out.print(" " + list5.get(i));
         }
         // Comprobar que se ha ordenado bien
         notValid = false;
         for (int i = 0; i < array.length - 1 && !notValid; i++) {
-            if (list1.get(i) > list1.get(i + 1)) {
+            if (list5.get(i) > list5.get(i + 1)) {
                 notValid = true;
             }
         }
