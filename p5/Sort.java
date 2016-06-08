@@ -38,7 +38,7 @@ public class Sort {
     }
     
     public void bubbleSort(List<Integer> list) {
-        int tempInt = 0;
+        int tempInt;
         int size = list.size();
         for (int i = 0; i < size - 1; i++) {
             for (int j = i + 1; j < size; j++) {
@@ -55,7 +55,7 @@ public class Sort {
     }
     
     public void selectionSort(List<Integer> list) {
-        int tempInt = 0;
+        int tempInt;
         int menor;
         int size = list.size();
         for (int i = 0; i < size - 1; i++) {
@@ -78,7 +78,7 @@ public class Sort {
     }
     
     public void insertionSort(List<Integer> list) {
-        int tempInt = 0;
+        int tempInt;
         int j;
         int size = list.size();
         for (int i = 0; i < size; i++) {
@@ -106,7 +106,7 @@ public class Sort {
     }
     
     public int particion(List<Integer> list, int left, int right) {
-        int tempInt = 0;
+        int tempInt;
         int pivot = list.get(right);
         
         int i = left;
@@ -697,7 +697,7 @@ public class Sort {
         System.out.println("-- Binary search (Sólo para arrays ordenados o arrays con el mismo numero en todas sus posiciones) --");
         System.out.println("                             Tiempos");
         
-        System.out.println("- datos ordenados o inversamente ordenados -");
+        System.out.println("- datos ordenados -");
         time = 0;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
