@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 
 /**
  * @author chao
@@ -12,7 +13,7 @@ import java.util.Random;
 public class Lists {
     
     public interface IComparer {
-        public boolean compare(int a, int b);
+        public boolean compare(int a);
     }
     
     List<Integer> lista;
@@ -245,9 +246,12 @@ public class Lists {
     public void borrarPorValor() {
         // Obtener elementos de las listas
         int mid = 999 / 2;
-        Integer finLista = new Integer(999);
-        Integer prinLista = new Integer(0);
-        Integer midLista = new Integer(mid);
+        int prinLista = 0;
+        int finLista = 999;
+        
+        Predicate<Integer> comp = (a) -> {
+            return a == finLista;
+        };
         
         System.out.println("-- Borrado por valor --");
         System.out.println("                             ArrayList            LinkedList");
@@ -256,7 +260,7 @@ public class Lists {
         listas = CreateOrderedList(true);
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            listas.get(i).remove(finLista);
+            listas.get(i).removeIf(comp);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
@@ -265,7 +269,7 @@ public class Lists {
         listas = CreateOrderedList(false);
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            listas.get(i).remove(finLista);
+            listas.get(i).removeIf(comp);
         }
         tFin = System.nanoTime();
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
@@ -274,11 +278,15 @@ public class Lists {
         System.out.println("- al final de la lista       " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
+        comp = (a) -> {
+            return a == prinLista;
+        };
+        
         // Borrar por valor un elemento que está al principio de un ArrayList
         listas = CreateOrderedList(true);
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            listas.get(i).remove(prinLista);
+            listas.get(i).removeIf(comp);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
@@ -287,7 +295,7 @@ public class Lists {
         listas = CreateOrderedList(false);
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            listas.get(i).remove(prinLista);
+            listas.get(i).removeIf(comp);
         }
         tFin = System.nanoTime();
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
@@ -296,11 +304,15 @@ public class Lists {
         System.out.println("- al principio de la lista   " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
+        comp = (a) -> {
+            return a == mid;
+        };
+        
         // Borrar por valor un elemento que está a la mitad de un ArrayList
         listas = CreateOrderedList(true);
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            listas.get(i).remove(midLista);
+            listas.get(i).removeIf(comp);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
@@ -309,7 +321,7 @@ public class Lists {
         listas = CreateOrderedList(false);
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            listas.get(i).remove(midLista);
+            listas.get(i).removeIf(comp);
         }
         tFin = System.nanoTime();
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
