@@ -11,13 +11,6 @@ import java.util.function.Predicate;
  * @author chao
  */
 public class Lists {
-    
-    public interface IComparer {
-        public boolean compare(int a);
-    }
-    
-    List<Integer> lista;
-    List<Integer> listaEnl;
     Random rnd;
     double tInicio;
     double tFin;
@@ -25,9 +18,10 @@ public class Lists {
     double tTranscurridoEnl;
     String color;
     String colorEnl;
-    int tempInt;
     DecimalFormat df;
     List<List<Integer>> listas;
+    List<Integer> lista;
+    List<Integer> listaEnl;
     
     public Lists() {
         rnd = new Random();

@@ -15,6 +15,7 @@ public class Sort {
     double tInicio;
     double tFin;
     double tTranscurrido;
+    double tMin;
     int swaps;
     int comparaciones;
     int accesos;
@@ -125,7 +126,8 @@ public class Sort {
         
         list.set(right, list.get(i));
         list.set(i, pivot);
-        accesos += 3;
+        // accesos += 2 por los 2 gets fuera del for
+        accesos += 2;
         return i;
     }
     
@@ -216,7 +218,6 @@ public class Sort {
         List<Integer> orderedList = new ArrayList<>(original);
         Collections.sort(orderedList);
         
-         
         return orderedList.equals(list) ? (char)27 + "[37;32m Success!" + (char)27 + "[0m" : 
                 (char)27 + "[37;31m Failed!" + (char)27 + "[0m";
     }
@@ -225,10 +226,11 @@ public class Sort {
         List<Integer> tempLista;
         System.out.println("-- Bubble sort --");
         System.out.println("Datos basados en 10 ejecuciones");
-        System.out.println("                             Tiempo             Comparaciones     Swaps       accesos");
+        System.out.println("                             Tiempo             Comparaciones     Swaps       Accesos      Tiempo mínimo");
         
         // Bubble sort de un arraylist desordenado
         int time = 0;
+        tMin = 100000000000.00f;
         for (int k = 0; k < 10; k++) {
             comparaciones = 0;
             swaps = 0;
@@ -238,12 +240,16 @@ public class Sort {
             bubbleSort(tempLista);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "      " + accesos);
+        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "            " + swaps + "      " + accesos + "       " + df.format(tMin) + "ms");
         
         // Bubble sort de un arraylist ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int k = 0; k < 10; k++) {
             comparaciones = 0;
             swaps = 0;
@@ -253,12 +259,16 @@ public class Sort {
             bubbleSort(tempLista);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "           " + accesos);
+        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "            " + swaps + "           " + accesos + "       " + df.format(tMin) + "ms");
         
         // Bubble sort de un arraylist inversamente ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int k = 0; k < 10; k++) {
             comparaciones = 0;
             swaps = 0;
@@ -268,12 +278,16 @@ public class Sort {
             bubbleSort(tempLista);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "      " + accesos);
+        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "            " + swaps + "      " + accesos + "       " + df.format(tMin) + "ms");
         
         // Bubble sort de un arraylist de elementos iguales
         time = 0;
+        tMin = 100000000000.00f;
         for (int k = 0; k < 10; k++) {
             comparaciones = 0;
             swaps = 0;
@@ -283,17 +297,21 @@ public class Sort {
             bubbleSort(tempLista);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "           " + accesos);
+        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "            " + swaps + "           " + accesos + "       " + df.format(tMin) + "ms");
         System.out.println();
         
         System.out.println("-- Selection sort --");
         System.out.println("Datos basados en 10 ejecuciones");
-        System.out.println("                             Tiempo             Comparaciones     Swaps       accesos");
+        System.out.println("                             Tiempo             Comparaciones     Swaps       Accesos      Tiempo mínimo");
         
         // Selection sort de un arraylist desordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int k = 0; k < 10; k++) {
             comparaciones = 0;
             swaps = 0;
@@ -303,12 +321,16 @@ public class Sort {
             selectionSort(tempLista);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "         " + accesos);
+        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "            " + swaps + "         " + accesos + "       " + df.format(tMin) + "ms");
         
         // Selection sort de un arraylist ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int k = 0; k < 10; k++) {
             comparaciones = 0;
             swaps = 0;
@@ -318,12 +340,16 @@ public class Sort {
             selectionSort(tempLista);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "           " + accesos);
+        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "            " + swaps + "           " + accesos + "       " + df.format(tMin) + "ms");
         
         // Selection sort de un arraylist inversamente ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int k = 0; k < 10; k++) {
             comparaciones = 0;
             swaps = 0;
@@ -333,12 +359,16 @@ public class Sort {
             selectionSort(tempLista);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "         " + accesos);
+        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "            " + swaps + "         " + accesos + "       " + df.format(tMin) + "ms");
         
         // Selection sort de un arraylist de elementos iguales
         time = 0;
+        tMin = 100000000000.00f;
         for (int k = 0; k < 10; k++) {
             comparaciones = 0;
             swaps = 0;
@@ -348,17 +378,21 @@ public class Sort {
             selectionSort(tempLista);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "           " + accesos);
+        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "            " + swaps + "           " + accesos + "       " + df.format(tMin) + "ms");
         
         System.out.println();
         System.out.println("-- Insertion sort --");
         System.out.println("Datos basados en 10 ejecuciones");
-        System.out.println("                             Tiempo             Comparaciones     Swaps       accesos");
+        System.out.println("                             Tiempo             Comparaciones     Swaps       Accesos      Tiempo mínimo");
         
         // Insertion sort de un arraylist desordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int k = 0; k < 10; k++) {
             comparaciones = 0;
             swaps = 0;
@@ -368,12 +402,16 @@ public class Sort {
             insertionSort(tempLista);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "      " + accesos);
+        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "            " + swaps + "      " + accesos + "       " + df.format(tMin) + "ms");
         
         // Insertion sort de un arraylist ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int k = 0; k < 10; k++) {
             comparaciones = 0;
             swaps = 0;
@@ -383,12 +421,16 @@ public class Sort {
             insertionSort(tempLista);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + swaps + "           " + accesos);
+        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "              " + swaps + "           " + accesos + "         " + df.format(tMin) + "ms");
         
         // Insertion sort de un arraylist inversamente ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int k = 0; k < 10; k++) {
             comparaciones = 0;
             swaps = 0;
@@ -398,12 +440,16 @@ public class Sort {
             insertionSort(tempLista);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "      " + accesos);
+        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "            " + swaps + "      " + accesos + "       " + df.format(tMin) + "ms");
         
         // Insertion sort de un arraylist de elementos iguales
         time = 0;
+        tMin = 100000000000.00f;
         for (int k = 0; k < 10; k++) {
             comparaciones = 0;
             swaps = 0;
@@ -413,17 +459,21 @@ public class Sort {
             insertionSort(tempLista);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + swaps + "           " + accesos);
+        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "              " + swaps + "           " + accesos + "         " + df.format(tMin) + "ms");
         
         System.out.println();
         System.out.println("-- Quick sort --");
         System.out.println("Datos basados en 10 ejecuciones");
-        System.out.println("                             Tiempo             Comparaciones     Swaps       accesos");
+        System.out.println("                             Tiempo             Comparaciones     Swaps       Accesos      Tiempo mínimo");
         
         // Quick sort de un arraylist desordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10; i++) {
             swaps = 0;
             comparaciones = 0;
@@ -433,12 +483,16 @@ public class Sort {
             quickSort(tempLista, 0, 999);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + comparaciones + "             " + swaps + "        " + accesos);
+        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "             " + swaps + "        " + accesos + "        " + df.format(tMin) + "ms");
         
         // Quick sort de un arraylist ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10; i++) {
             swaps = 0;
             comparaciones = 0;
@@ -448,12 +502,16 @@ public class Sort {
             quickSort(tempLista, 0, 999);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "      " + accesos);
+        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "            " + swaps + "      " + accesos + "       " + df.format(tMin) + "ms");
         
         // Quick sort de un arraylist inversamente ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10; i++) {
             swaps = 0;
             comparaciones = 0;
@@ -463,12 +521,16 @@ public class Sort {
             quickSort(tempLista, 0, 999);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "      " + accesos);
+        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "            " + swaps + "      " + accesos + "       " + df.format(tMin) + "ms");
         
         // Quick sort de un arraylis de elementos iguales
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10; i++) {
             swaps = 0;
             comparaciones = 0;
@@ -478,14 +540,17 @@ public class Sort {
             quickSort(tempLista, 0, 999);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + comparaciones + "            " + swaps + "           " + accesos);
+        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "            " + swaps + "           " + accesos + "       " + df.format(tMin) + "ms");
         System.out.println();
         
         System.out.println("-- Merge sort --");
         System.out.println("Datos basados en 10 ejecuciones");
-        System.out.println("                             Tiempo             Comparaciones       accesos");
+        System.out.println("                             Tiempo             Comparaciones     Accesos      Tiempo mínimo");
         
         // Creación de un arraylist temporal que servirá de copia para la lista de apoyo
         List<Integer> temp = new ArrayList<>();
@@ -498,6 +563,7 @@ public class Sort {
         
         // Merge sort de un arraylist desordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10; i++) {
             comparaciones = 0;
             accesos = 0;
@@ -507,12 +573,16 @@ public class Sort {
             mergeSort(tempLista, listaApoyo, 0, 999);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + accesos);
+        System.out.println("- datos aleatorios           " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "              " + accesos + "        " + df.format(tMin) + "ms");
         
         // Merge sort de un arraylist ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10; i++) {
             comparaciones = 0;
             accesos = 0;
@@ -522,12 +592,16 @@ public class Sort {
             mergeSort(tempLista, listaApoyo, 0, 999);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + accesos);
+        System.out.println("- datos ordenados            " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "              " + accesos + "        " + df.format(tMin) + "ms");
         
         // Merge sort de un arraylist inversamente ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10; i++) {
             comparaciones = 0;
             accesos = 0;
@@ -537,12 +611,16 @@ public class Sort {
             mergeSort(tempLista, listaApoyo, 0, 999);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + accesos);
+        System.out.println("- datos invers. ordenados    " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "              " + accesos + "        " + df.format(tMin) + "ms");
         
         // Merge sort de un arraylist de elementos iguales
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10; i++) {
             comparaciones = 0;
             accesos = 0;
@@ -552,9 +630,12 @@ public class Sort {
             mergeSort(tempLista, listaApoyo, 0, 999);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 7);
-        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + comparaciones + "              " + accesos);
+        System.out.println("- datos iguales              " + df.format(tTranscurrido) + " ms    " + 
+            comparaciones + "              " + accesos + "        " + df.format(tMin) + "ms");
         System.out.println();
         
         // Elementos del arraylist desordenado
@@ -566,52 +647,68 @@ public class Sort {
         
         System.out.println("Datos basados en 10000 ejecuciones");
         System.out.println("-- Sequential search --");
-        System.out.println("                             Tiempos");
+        System.out.println("                             Tiempos              Tiempo mínimo");
         System.out.println("- datos aleatorios -");
         
         // Sequential search de un elemento al final de un arraylist desordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaAle, finNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- al final                   " + df.format(tTranscurrido) + " ms");
+        System.out.println("- al final                   " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Sequential search de un elemento al principio de un arraylist desordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaAle, prinNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- al principio               " + df.format(tTranscurrido) + " ms");
+        System.out.println("- al principio               " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Sequential search de un elemento a la mitad de un arraylist desordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaAle, midNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- a mitad                    " + df.format(tTranscurrido) + " ms");
+        System.out.println("- a mitad                    " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Sequential search de un elemento no existente en un arraylist desordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaAle, notNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms");
+        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Elementos del arraylist ordenado
         finNum = listaOrd.get(999);
@@ -622,47 +719,63 @@ public class Sort {
         
         // Sequential search de un elemento al final de un arraylist ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaOrd, finNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- al final                   " + df.format(tTranscurrido) + " ms");
+        System.out.println("- al final                   " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Sequential search de un elemento al principio de un arraylist ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaOrd, prinNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- al principio               " + df.format(tTranscurrido) + " ms");
+        System.out.println("- al principio               " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Sequential search de un elemento a la mitad de un arraylist ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaOrd, midNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- a mitad                    " + df.format(tTranscurrido) + " ms");
+        System.out.println("- a mitad                    " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Sequential search de un elemento no existente en un arraylist ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaOrd, notNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms");
+        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Elementos de un arraylist inversamente ordenado
         finNum = listaInvOrd.get(999);
@@ -674,47 +787,63 @@ public class Sort {
         
         // Sequential search de un elemento al final de un arraylist inversamente ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaInvOrd, finNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- al final                   " + df.format(tTranscurrido) + " ms");
+        System.out.println("- al final                   " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Sequential search de un elemento al principio de un arraylist inversamente ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaInvOrd, prinNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- al principio               " + df.format(tTranscurrido) + " ms");
+        System.out.println("- al principio               " + df.format(tTranscurrido) + " ms" +
+            "      " + df.format(tMin) + "ms");
         
         // Sequential search de un elemento a la mitad de un arraylist inversamente ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaInvOrd, midNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- a mitad                    " + df.format(tTranscurrido) + " ms");
+        System.out.println("- a mitad                    " + df.format(tTranscurrido) + " ms" +
+            "      " + df.format(tMin) + "ms");
         
         // Sequential search de un elemento no existente en un arraylist inversamente ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaInvOrd, notNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms");
+        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Elemento de un arraylist de elementos iguales
         prinNum = listaIgual.get(999);
@@ -724,25 +853,33 @@ public class Sort {
         
         // Sequential search de un elemento al principio de un arraylist de elementos iguales
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaIgual, prinNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- existente                  " + df.format(tTranscurrido) + " ms");
+        System.out.println("- existente                  " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Sequential search de un elemento no existente en un arraylist de elementos iguales
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             sequentialSearch(listaIgual, notNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms");
+        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Elementos de un arraylist ordenado
         prinNum = listaOrd.get(0);
@@ -752,77 +889,101 @@ public class Sort {
         System.out.println();
         System.out.println("Datos basados en 10000 ejecuciones");
         System.out.println("-- Binary search (Sólo para arrays ordenados o arrays con el mismo numero en todas sus posiciones) --");
-        System.out.println("                             Tiempos");
+        System.out.println("                             Tiempos              Tiempo mínimo");
         System.out.println("- datos ordenados -");
         
         // Binary search de un elemento al final de un arraylist ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             binarySearch(listaOrd, finNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- al final                   " + df.format(tTranscurrido) + " ms");
+        System.out.println("- al final                   " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Binary search de un elemento al principio de un arraylist ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             binarySearch(listaOrd, prinNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- al principio               " + df.format(tTranscurrido) + " ms");
+        System.out.println("- al principio               " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Binary search de un elemento a la mitad de un arraylist ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             binarySearch(listaOrd, midNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- a mitad                    " + df.format(tTranscurrido) + " ms");
+        System.out.println("- a mitad                    " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Binary search de un elemento no existente en un arraylist ordenado
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             binarySearch(listaOrd, notNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms");
+        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         System.out.println();
         System.out.println("- datos iguales -");
         
         // Binary search de un elemento de un arraylist de elementos iguales
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             binarySearch(listaIgual, prinNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- existente                  " + df.format(tTranscurrido) + " ms");
+        System.out.println("- existente                  " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
         // Binary search de un elemento no existente en un arraylist de elementos iguales
         time = 0;
+        tMin = 100000000000.00f;
         for (int i = 0; i < 10000; i++) {
             tInicio = System.nanoTime();
             binarySearch(listaIgual, notNum);
             tFin = System.nanoTime();
             time += tFin - tInicio;
+            tMin = tMin < tFin - tInicio ? tMin : tFin - tInicio;
         }
+        tMin /= Math.pow(10, 6);
         tTranscurrido = time / Math.pow(10, 10);
-        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms");
+        System.out.println("- no existente               " + df.format(tTranscurrido) + " ms" + 
+            "      " + df.format(tMin) + "ms");
         
     }
     
@@ -953,15 +1114,15 @@ public class Sort {
         System.out.println();
         num = list1.get(5);
         System.out.println("Búsqueda binaria en posición 5 del array, valor " + num);
-        if (sequentialSearch(list1, num)) {
+        if (binarySearch(list1, num)) {
             System.out.println((char)27 + "[37;32mEncontrado!" + (char)27 + "[0m");
         }
         else
             System.out.println((char)27 + "[37;31mNo encontrado" + (char)27 + "[0m");
         System.out.println();
         num = 12;
-        System.out.println("Búsqueda secuencial con valor no existente en el array, valor: " + num);
-        if (sequentialSearch(list1, num)) {
+        System.out.println("Búsqueda binaria con valor no existente en el array, valor: " + num);
+        if (binarySearch(list1, num)) {
             System.out.println((char)27 + "[37;32mEncontrado!" + (char)27 + "[0m");
         }
         else
