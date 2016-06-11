@@ -11,10 +11,12 @@ import java.util.Random;
  */
 public class Lists {
     
+    public interface IComparer {
+        public boolean compare(int a, int b);
+    }
+    
     List<Integer> lista;
     List<Integer> listaEnl;
-    List<Integer> tempList;
-    List<Integer> tempListEnl;
     Random rnd;
     double tInicio;
     double tFin;
@@ -24,6 +26,7 @@ public class Lists {
     String colorEnl;
     int tempInt;
     DecimalFormat df;
+    List<List<Integer>> listas;
     
     public Lists() {
         rnd = new Random();
@@ -38,84 +41,127 @@ public class Lists {
         for (int i = 0; i < 1000; i++) {
             listaEnl.add(rnd.nextInt(2000000));
         }
-        tempList = new ArrayList<>(lista);
-        tempListEnl = new LinkedList<>(listaEnl);
         df = new DecimalFormat("0.0000000000");
+        
+        listas = new ArrayList<>();
+    }
+    
+    public List<List<Integer>> CreateOrderedList(boolean isArrayList){
+        List<List<Integer>> list = new ArrayList<>();
+        List<Integer> temp;
+        if (isArrayList) {
+            for (int i = 0; i < 10000; i++) {
+                temp = new ArrayList<>();
+                for (int j = 0; j < 1000; j++) {
+                    temp.add(i);
+                }
+                list.add(temp);
+            }
+        }
+        else {
+            for (int i = 0; i < 10000; i++) {
+                temp = new LinkedList<>();
+                for (int j = 0; j < 1000; j++) {
+                    temp.add(i);
+                }
+                list.add(temp);
+            }
+        }
+        return list;
+   }
+    
+    public boolean binarySearch(List<Integer> list, int num) {
+        int inicio = 0;
+        int fin = 999;
+        int mid = (fin + inicio) / 2;
+        while (inicio < mid) {
+            if (inicio == mid) {
+                return false;
+            }
+            if (list.get(mid) == num) {
+                return true;
+            }
+            else if (list.get(fin) == num) {
+                return true;
+            }
+            if (list.get(mid) > num) {
+                fin = mid;
+            }
+            else if (list.get(mid) < num) {
+                inicio = mid;
+            }
+            mid = (fin + inicio) / 2;
+        }
+        return false;
     }
     
     public void insertar() {
         System.out.println("-- Inserción --");
         tTranscurrido = 0;
-        int sum = 0;
         System.out.println("                             ArrayList            LinkedList");
-        // ArrayList
+        
+        // Inserción al final de un ArrayList
+        listas = CreateOrderedList(true);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempList.add(0);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempList.remove(1000);
+            listas.get(i).add(1000);
         }
-        tTranscurrido = sum / Math.pow(10, 10);
-        sum = 0;
-        // LinkedList
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        
+        // Inserción al final de un LinkedList
+        listas = CreateOrderedList(false);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempListEnl.add(0);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempListEnl.remove(1000);
+            listas.get(i).add(1000);
         }
-        tTranscurridoEnl = sum / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- al final de la lista       " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
-        sum = 0;
-        // ArrayList
+        // Inserción al principio de un ArrayList
+        listas = CreateOrderedList(true);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempList.add(0, 0);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempList.remove(0);
+            listas.get(i).add(0, 0);
         }
-        tTranscurrido = sum / Math.pow(10, 10);
-        sum = 0;
-        // LinkedList
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        
+        // Inserción al principio de un LinkedList
+        listas = CreateOrderedList(false);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempListEnl.add(0, 0);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempListEnl.remove(0);
+            listas.get(i).add(0, 0);
         }
-        tTranscurridoEnl = sum / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- al principio de la lista   " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
-        sum = 0;
-        // ArrayList
+        
+        int mid = 999 / 2;
+        // Inserción a la mitad de un ArrayList
+        listas = CreateOrderedList(true);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempList.add(499, 0);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempList.remove(499);
+            listas.get(i).add(mid, 0);
         }
-        tTranscurrido = sum / Math.pow(10, 10);
-        sum = 0;
-        // LinkedList
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        
+        // Inserción a la mitad de un LinkedList
+        listas = CreateOrderedList(false);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempListEnl.add(499, 0);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempListEnl.remove(499);
+            listas.get(i).add(mid, 0);
         }
-        tTranscurridoEnl = sum / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- a mitad de la lista        " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
@@ -123,77 +169,73 @@ public class Lists {
     }
     
     public void borrarPorPosicion() {
+        int indFinal = 999;
+        int indPrinc = 0;
+        int mid = 999 / 2;
+        
         System.out.println("-- Borrado por posición --");
-        tTranscurrido = 0;
-        int sum = 0;
         System.out.println("                             ArrayList            LinkedList");
-        // ArrayList
+        
+        // Borrado de un elemento al final de un ArrayList
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempList.remove(999);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempList.add(0);
+            listas.get(i).remove(indFinal);
         }
-        tTranscurrido = sum / Math.pow(10, 10);
-        sum = 0;
-        // LinkedList
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        
+        // Borrado de un elemento al final de un LinkedList
+        listas = CreateOrderedList(false);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempListEnl.remove(999);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempListEnl.add(0);
+            listas.get(i).remove(indFinal);
         }
-        tTranscurridoEnl = sum / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- al final de la lista       " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
-        sum = 0;
-        // ArrayList
+        
+        // Borrado de un elemento al principio de un ArrayList
+        listas = CreateOrderedList(true);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempList.remove(0);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempList.add(0, 0);
+            listas.get(i).remove(indPrinc);
         }
-        tTranscurrido = sum / Math.pow(10, 10);
-        sum = 0;
-        // LinkedList
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        
+        // Borrado de un elemento al principio de un LinkedList
+        listas = CreateOrderedList(false);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempListEnl.remove(0);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempListEnl.add(0, 0);
+            listas.get(i).remove(indPrinc);
         }
-        tTranscurridoEnl = sum / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- al principio de la lista   " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
-        sum = 0;
-        // ArrayList
+        
+        // Borrado de un elemento a la mitad de un ArrayList
+        listas = CreateOrderedList(true);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempList.remove(499);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempList.add(499, 0);
+            listas.get(i).remove(mid);
         }
-        tTranscurrido = sum / Math.pow(10, 10);
-        sum = 0;
-        // LinkedList
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        
+        // Borrado de un element a la mitad de un LinkedList
+        listas = CreateOrderedList(false);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempListEnl.remove(499);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempListEnl.add(499, 0);
+            listas.get(i).remove(mid);
         }
-        tTranscurridoEnl = sum / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- a mitad de la lista        " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
@@ -201,89 +243,76 @@ public class Lists {
     }
     
     public void borrarPorValor() {
-        lista = new ArrayList<>();
-        listaEnl = new LinkedList<>();
-        for (int i = 0; i < 1000; i++) {
-            lista.add(i);
-            listaEnl.add(i);
-        }
-        tempList = new ArrayList<>(lista);
-        tempListEnl = new LinkedList<>(listaEnl);
-        int finLista = new Integer(999);
-        int prinLista = new Integer(0);
-        int midLista = new Integer(499);
+        // Obtener elementos de las listas
+        int mid = 999 / 2;
+        Integer finLista = new Integer(999);
+        Integer prinLista = new Integer(0);
+        Integer midLista = new Integer(mid);
         
         System.out.println("-- Borrado por valor --");
-        tTranscurrido = 0;
-        int sum = 0;
         System.out.println("                             ArrayList            LinkedList");
-        // ArrayList
+        
+        // Borrar por valor un elemento que está al final de un ArrayList
+        listas = CreateOrderedList(true);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempList.remove(finLista);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempList.add(finLista);
+            listas.get(i).remove(finLista);
         }
-        tTranscurrido = sum / Math.pow(10, 10);
-        sum = 0;
-        // LinkedList
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        
+        // Borrar por valor un elemento que está al final de un LinkedList
+        listas = CreateOrderedList(false);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempListEnl.remove(finLista);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempListEnl.add(finLista);
+            listas.get(i).remove(finLista);
         }
-        tTranscurridoEnl = sum / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- al final de la lista       " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
-        sum = 0;
-        // ArrayList
+        
+        // Borrar por valor un elemento que está al principio de un ArrayList
+        listas = CreateOrderedList(true);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempList.remove(prinLista);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempList.add(0, prinLista);
+            listas.get(i).remove(prinLista);
         }
-        tTranscurrido = sum / Math.pow(10, 10);
-        sum = 0;
-        // LinkedList
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        
+        // Borrar por valor un elemento que está al principio de un LinkedList
+        listas = CreateOrderedList(false);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempListEnl.remove(prinLista);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempListEnl.add(0, prinLista);
+            listas.get(i).remove(prinLista);
         }
-        tTranscurridoEnl = sum / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- al principio de la lista   " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
-        sum = 0;
-        // ArrayList
+        
+        // Borrar por valor un elemento que está a la mitad de un ArrayList
+        listas = CreateOrderedList(true);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempList.remove(midLista);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempList.add(499, midLista);
+            listas.get(i).remove(midLista);
         }
-        tTranscurrido = sum / Math.pow(10, 10);
-        sum = 0;
-        // LinkedList
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        
+        // Borrar por valor un elemento que está a la mitad de un LinkedList
+        listas = CreateOrderedList(false);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tInicio = System.nanoTime();
-            tempListEnl.remove(midLista);
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-            tempListEnl.add(499, midLista);
+            listas.get(i).remove(midLista);
         }
-        tTranscurridoEnl = sum / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- a mitad de la lista        " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
@@ -293,25 +322,24 @@ public class Lists {
     public void vaciado() {
         System.out.println("-- Vaciado --");
         System.out.println("                             ArrayList            LinkedList");
-        int sum = 0;
-        for (int i = 0; i < 10000; i++) {
-            tempList = new ArrayList<>(lista);
-            tInicio = System.nanoTime();
-            tempList.clear();
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
-        }
-        tTranscurrido = sum / Math.pow(10, 10);
         
-        sum = 0;
+        // Vaciado de un arraylist
+        listas = CreateOrderedList(true);
+        tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            tempListEnl = new LinkedList<>(listaEnl);
-            tInicio = System.nanoTime();
-            tempListEnl.clear();
-            tFin = System.nanoTime();
-            sum += tFin - tInicio;
+            listas.get(i).clear();
         }
-        tTranscurridoEnl = sum / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
+        
+        // Vaciado de un linkedlist
+        listas = CreateOrderedList(false);
+        tInicio = System.nanoTime();
+        for (int i = 0; i < 10000; i++) {
+            listas.get(i).clear();
+        }
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- Vaciado del array          " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
@@ -321,7 +349,6 @@ public class Lists {
     public void busqueda() {
         lista = new ArrayList<>();
         listaEnl = new LinkedList<>();
-        tTranscurrido = 0;
         // Llenado de listas con números ordenados
         for (int i = 0; i < 1000; i++) {
             lista.add(i);
@@ -329,134 +356,93 @@ public class Lists {
         }
         int finNum = 999;
         int iniNum = 0;
-        int midNum = 499;
-        double time = 0;
+        int midNum = 999 / 2;
         System.out.println("-- Búsqueda con funciones propias --");
         System.out.println("                             ArrayList            LinkedList");
         
-        // ArrayList
+        // Búsqueda con función propio de un ArrayList de un elemento al final de la lista
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
             if (lista.contains(finNum)) {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
-            }
-            else {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
             }
         }
-        tTranscurrido = (time) / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
         
-        // LinkedList
+        // Búsqueda con función propio de un LinkedList de un elemento al final de la lista
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
             if (listaEnl.contains(finNum)) {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
-            }
-            else {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
             }
         }
-        tTranscurridoEnl = (time) / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- al final de la lista       " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
-        // ArrayList
+        // Búsqueda con función propio de un ArrayList de un elemento al principio de la lista
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
             if (lista.contains(iniNum)) {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
-            }
-            else {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
             }
         }
-        tTranscurrido = (time) / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
         
-        // LinkedList
+        // Búsqueda con función propio de un LinkedList de un elemento al principio de la lista
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
             if (listaEnl.contains(iniNum)) {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
-            }
-            else {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
             }
         }
-        tTranscurridoEnl = (time) / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- al principio de la lista   " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
-        // ArrayList
+        // Búsqueda con función propio de un ArrayList de un elemento a la mitad de la lista
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
             if (lista.contains(midNum)) {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
-            }
-            else {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
             }
         }
-        tTranscurrido = (time) / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
         
-        // LinkedList
+        // Búsqueda con función propio de un LinkedList de un elemento a la mitad de la lista
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
             if (listaEnl.contains(midNum)) {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
-            }
-            else {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
             }
         }
-        tTranscurridoEnl = (time) / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- a mitad de la lista        " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
-        // ArrayList
+        // Búsqueda con función propio de un ArrayList de un elemento no existente en la lista
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
             if (lista.contains(4000000)) {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
-            }
-            else {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
             }
         }
-        tTranscurrido = (time) / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
         
-        // LinkedList
+        // Búsqueda con función propio de un LinkedList de un elemento no existente en la lista
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
             if (listaEnl.contains(4000000)) {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
-            }
-            else {
-                tFin = System.nanoTime();
-                time = tFin - tInicio;
             }
         }
-        tTranscurridoEnl = (time) / Math.pow(10, 10);
+        tFin = System.nanoTime();
+        tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
         color = tTranscurrido < tTranscurridoEnl ? "[37;32m" : "[37;31m";
         colorEnl = tTranscurrido > tTranscurridoEnl ? "[37;32m" : "[37;31m";
         System.out.println("- no existente               " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
@@ -466,27 +452,24 @@ public class Lists {
         System.out.println("-- Búsqueda secuencial --");
         System.out.println("                             ArrayList            LinkedList");
         
-        // ArrayList
-        boolean encontrado;
+        // Búsqueda secuencial de un número al final de un arraylist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            encontrado = false;
-            for (int j = 0; j < 1000 && !encontrado; j++) {
+            for (int j = 0; j < 1000; j++) {
                 if (lista.get(j) == finNum) {
-                    encontrado = true;
+                    break;
                 }
             }
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
         
-        // LinkedList
+        // Búsqueda secuencial de un número al final de un linkedlist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            encontrado = false;
-            for (int j = 0; j < 1000 && !encontrado; j++) {
+            for (int j = 0; j < 1000; j++) {
                 if (listaEnl.get(j) == finNum) {
-                    encontrado = true;
+                    break;
                 }
             }
         }
@@ -497,26 +480,24 @@ public class Lists {
         System.out.println("- al final de la lista       " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
-        // ArrayList
+        // Búsqueda secuencial de un número al principio de un arraylist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            encontrado = false;
-            for (int j = 0; j < 1000 && !encontrado; j++) {
+            for (int j = 0; j < 1000; j++) {
                 if (lista.get(j) == iniNum) {
-                    encontrado = true;
+                    break;
                 }
             }
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
         
-        // LinkedList
+        // Búsqueda secuencial de un número al principio de un linkedlist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            encontrado = false;
-            for (int j = 0; j < 1000 && !encontrado; j++) {
+            for (int j = 0; j < 1000; j++) {
                 if (listaEnl.get(j) == iniNum) {
-                    encontrado = true;
+                    break;
                 }
             }
         }
@@ -527,26 +508,24 @@ public class Lists {
         System.out.println("- al principio de la lista   " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
-        // ArrayList
+        // Búsqueda secuencial de un número a la mitad de un arraylist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            encontrado = false;
-            for (int j = 0; j < 1000 && !encontrado; j++) {
+            for (int j = 0; j < 1000; j++) {
                 if (lista.get(j) == midNum) {
-                    encontrado = true;
+                    break;
                 }
             }
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
         
-        // LinkedList
+        // Búsqueda secuencial de un número a la mitad de un linkedlist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            encontrado = false;
-            for (int j = 0; j < 1000 && !encontrado; j++) {
+            for (int j = 0; j < 1000; j++) {
                 if (listaEnl.get(j) == midNum) {
-                    encontrado = true;
+                    break;
                 }
             }
         }
@@ -557,26 +536,24 @@ public class Lists {
         System.out.println("- a mitad de la lista        " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
-        // ArrayList
+        // Búsqueda secuencial de un número no existente en un arraylist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            encontrado = false;
-            for (int j = 0; j < 1000 && !encontrado; j++) {
+            for (int j = 0; j < 1000; j++) {
                 if (lista.get(j) == 4000000) {
-                    encontrado = true;
+                    break;
                 }
             }
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
         
-        // LinkedList
+        // Búsqueda secuencial de un número no existente en un linkedlist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            encontrado = false;
-            for (int j = 0; j < 1000 && !encontrado; j++) {
+            for (int j = 0; j < 1000; j++) {
                 if (listaEnl.get(j) == 4000000) {
-                    encontrado = true;
+                    break;
                 }
             }
         }
@@ -591,55 +568,18 @@ public class Lists {
         System.out.println("-- Búsqueda binaria --");
         System.out.println("                             ArrayList            LinkedList");
         
-        int inicio, fin, mid ;
-        // ArrayList
+        // Búsqueda binaria de un número al final de un arraylist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            inicio = 0;
-            fin = 999;
-            mid = (fin + inicio) / 2;
-            encontrado = false;
-            while (!encontrado && inicio < mid) {
-                if (lista.get(mid) == finNum) {
-                    encontrado = true;
-                }
-                else if (lista.get(fin) == finNum) {
-                    encontrado = true;
-                }
-                if (lista.get(mid) > finNum) {
-                    fin = mid;
-                }
-                else if (lista.get(mid) < finNum) {
-                    inicio = mid;
-                }
-                mid = (fin + inicio) / 2;
-            }
+            binarySearch(lista, finNum);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
         
-        // LinkedList
+        // Búsqueda binaria de un número al final de un linkedlist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            inicio = 0;
-            fin = 999;
-            mid = (fin + inicio) / 2;
-            encontrado = false;
-            while (!encontrado && inicio < mid) {
-                if (listaEnl.get(mid) == finNum) {
-                    encontrado = true;
-                }
-                else if (listaEnl.get(fin) == finNum) {
-                    encontrado = true;
-                }
-                if (listaEnl.get(mid) > finNum) {
-                    fin = mid;
-                }
-                else if (listaEnl.get(mid) < finNum) {
-                    inicio = mid;
-                }
-                mid = (fin + inicio) / 2;
-            }
+            binarySearch(listaEnl, finNum);
         }
         tFin = System.nanoTime();
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
@@ -648,54 +588,18 @@ public class Lists {
         System.out.println("- al final de la lista       " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
-        // ArrayList
+        // Búsqueda binaria de un número al principio de un arraylist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            inicio = 0;
-            fin = 999;
-            mid = (fin + inicio) / 2;
-            encontrado = false;
-            while (!encontrado && inicio < mid) {
-                if (lista.get(mid) == iniNum) {
-                    encontrado = true;
-                }
-                else if (lista.get(fin) == iniNum) {
-                    encontrado = true;
-                }
-                if (lista.get(mid) > iniNum) {
-                    fin = mid;
-                }
-                else if (lista.get(mid) < iniNum) {
-                    inicio = mid;
-                }
-                mid = (fin + inicio) / 2;
-            }
+            binarySearch(lista, iniNum);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
         
-        // LinkedList
+        // Búsqueda binaria de un número al principio de un linkedlist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            inicio = 0;
-            fin = 999;
-            mid = (fin + inicio) / 2;
-            encontrado = false;
-            while (!encontrado && inicio < mid) {
-                if (listaEnl.get(mid) == iniNum) {
-                    encontrado = true;
-                }
-                else if (listaEnl.get(fin) == iniNum) {
-                    encontrado = true;
-                }
-                if (listaEnl.get(mid) > iniNum) {
-                    fin = mid;
-                }
-                else if (listaEnl.get(mid) < iniNum) {
-                    inicio = mid;
-                }
-                mid = (fin + inicio) / 2;
-            }
+            binarySearch(listaEnl, iniNum);
         }
         tFin = System.nanoTime();
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
@@ -704,57 +608,18 @@ public class Lists {
         System.out.println("- al principio de la lista   " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
-        // ArrayList
+        // Búsqueda binaria de un número a la mitad de un arraylist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            inicio = 0;
-            fin = 999;
-            mid = (fin + inicio) / 2;
-            encontrado = false;
-            while (!encontrado && inicio < mid) {
-                if (lista.get(mid) == midNum) {
-                    encontrado = true;
-                }
-                else if (lista.get(fin) == midNum) {
-                    encontrado = true;
-                }
-                if (lista.get(mid) > midNum) {
-                    fin = mid;
-                }
-                else if (lista.get(mid) < midNum) {
-                    inicio = mid;
-                }
-                mid = (fin + inicio) / 2;
-            }
+            binarySearch(lista, midNum);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
         
-        // LinkedList
+        // Búsqueda binaria de un número a la mitad de un linkedlist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            inicio = 0;
-            fin = 999;
-            mid = (fin + inicio) / 2;
-            encontrado = false;
-            while (!encontrado && inicio < mid) {
-                if (inicio == mid) {
-                    break;
-                }
-                if (listaEnl.get(mid) == midNum) {
-                    encontrado = true;
-                }
-                else if (listaEnl.get(fin) == midNum) {
-                    encontrado = true;
-                }
-                if (listaEnl.get(mid) > midNum) {
-                    fin = mid;
-                }
-                else if (listaEnl.get(mid) < midNum) {
-                    inicio = mid;
-                }
-                mid = (fin + inicio) / 2;
-            }
+            binarySearch(listaEnl, midNum);
         }
         tFin = System.nanoTime();
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
@@ -763,57 +628,18 @@ public class Lists {
         System.out.println("- a mitad de la lista        " + (char)27 + color + df.format(tTranscurrido) + " ms"+ "      " + 
                 (char)27 + colorEnl + df.format(tTranscurridoEnl) + " ms" + (char)27 + "[0m");
         
-        // ArrayList
+        // Búsqueda binaria de un número no existente de un arraylist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            inicio = 0;
-            fin = 999;
-            mid = (fin + inicio) / 2;
-            encontrado = false;
-            while (!encontrado && inicio < mid) {
-                if (lista.get(mid) == 4000000) {
-                    encontrado = true;
-                }
-                else if (lista.get(fin) == 4000000) {
-                    encontrado = true;
-                }
-                if (lista.get(mid) > 4000000) {
-                    fin = mid;
-                }
-                else if (lista.get(mid) < 4000000) {
-                    inicio = mid;
-                }
-                mid = (fin + inicio) / 2;
-            }
+            binarySearch(lista, 4000000);
         }
         tFin = System.nanoTime();
         tTranscurrido = (tFin - tInicio) / Math.pow(10, 10);
         
-        // LinkedList
+        // Búsqueda binaria de un número no existente de un linkedlist
         tInicio = System.nanoTime();
         for (int i = 0; i < 10000; i++) {
-            inicio = 0;
-            fin = 999;
-            mid = (fin + inicio) / 2;
-            encontrado = false;
-            while (!encontrado && inicio < mid) {
-                if (inicio == mid) {
-                    break;
-                }
-                if (listaEnl.get(mid) == 4000000) {
-                    encontrado = true;
-                }
-                else if (listaEnl.get(fin) == 4000000) {
-                    encontrado = true;
-                }
-                if (listaEnl.get(mid) > 4000000) {
-                    fin = mid;
-                }
-                else if (listaEnl.get(mid) < 4000000) {
-                    inicio = mid;
-                }
-                mid = (fin + inicio) / 2;
-            }
+            binarySearch(listaEnl, 4000000);
         }
         tFin = System.nanoTime();
         tTranscurridoEnl = (tFin - tInicio) / Math.pow(10, 10);
@@ -824,6 +650,9 @@ public class Lists {
     }
     
     public void RunTimes() {
+        System.out.println("Todos los tests basados en 10000 repeticiones sobre ArrayList y LinkedList de tamaño 1000");
+        System.out.println("Obteniendo la media de las 10000 repeticiones");
+        System.out.println();
         insertar();
         System.out.println();
         borrarPorPosicion();
@@ -838,9 +667,6 @@ public class Lists {
     public static void main(String[] args) {
         // Class Lists
         Lists myList = new Lists();
-        System.out.println("Todos los tests basados en 10000 repeticiones sobre ArrayList y LinkedList de tamaño 1000");
-        System.out.println("Obteniendo la media de las 10000 repeticiones");
-        System.out.println();
         myList.RunTimes();
         
         // Class Sort
@@ -850,5 +676,4 @@ public class Lists {
         System.out.println();
         mySort.RunTests();
     }
-    
 }
